@@ -1,8 +1,8 @@
 import java.util.*; //p sure this just means all
 
 public class sand {
-    //static int[] dims   = {1200,260};
-    static int[] dims   = {600,130};
+    static int[] dims   = {1200,260};
+    //static int[] dims   = {600,130};
 
     public static void printResult(int[] dims, int[][] positions, String[] orderOfWeight, String[] escapeCodes) {
         String currLine = "";

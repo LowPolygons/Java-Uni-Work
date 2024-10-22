@@ -82,7 +82,8 @@ public class fileIoTest {
     }
 
     public static void main ( String[] args) {
-        //ArrayList<double[]> particles
+        //Won't get the same results as in Fortran, that is due to the different data type and therefore precision
+        //Fortran is less precise due to the use of reals not doubles
         int numParticles = 10000;
         int numInteractions = 0;
         
@@ -90,12 +91,8 @@ public class fileIoTest {
         double[][] particles = new double[numParticles][3];
         double[] lowerBounds = {0.0, 0.0, 0.0};
         double[] upperBounds = {1.0, 1.0, 1.0};
+        
         particles = openParticleFile(numParticles, particles);
-
-        //Works
-        // for (int i = 0; i < particles.length-1; i++) {
-        //     System.out.println( Double.toString(particles[i][0]) + ", " + Double.toString(particles[i][1]) + ", " + Double.toString(particles[i][2]) + ", Sum: " + Double.toString( particles[i][0] + particles[i][1] + particles[i][2]));
-        // }
 
         for (int currParticle = 0; currParticle < particles.length - 1; currParticle++){
             for (int targetParticle = currParticle+1; targetParticle < particles.length - 1; targetParticle++ ){ //so there arent duplicates,start at currParticle
