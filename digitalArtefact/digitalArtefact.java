@@ -22,6 +22,7 @@ public class digitalArtefact {
  
     //Given a scanner and a prompt, it repeatedly accepts inputs unti a valid integer is input
 
+    //The standard inputs for the construction of a Profile class (includes but not limited to)
     String[] listOfParameters = {"firstName", "surname", "age", "companyName", "jobDescription", "yearsAtCompany", "monthsAtCompany"};
 
     public static boolean saveProfile(Profile saveMe){
@@ -68,7 +69,7 @@ public class digitalArtefact {
         File openMe = new File("profiles/"+fileName+".profile");
 
         Profile createdProfile;
-        
+
         //To store the results with keys, so that order doesn't matter when reforming the class
         HashMap<String, String> profileValues = new HashMap<>();
 
@@ -139,11 +140,11 @@ public class digitalArtefact {
         return output;
     }
 
-    //Redundant code here, but until an integer within a range is put in
+    //Redundant code here from the validateInt function, but until an integer within a range is put in
     public static int intInRange(Scanner sc, int lowerBound, int upperBound) {
         int output = 0;
         boolean valid = false;
-
+        
         while (!valid) {
             if (sc.hasNextInt()) {
                 valid = true;
@@ -230,13 +231,8 @@ public class digitalArtefact {
     public static void main (String[] args) {
         Scanner sc = new Scanner(System.in);
 
-                
-        // Profile currProfile = recreateProfile("tristanrimmerukri");
-
-
         //Main method to create the Profile; NOT DIRECTLY THE CONSTRUCTOR
         Profile currProfile = initialiseProfile(sc);
-        /* Profile test = */ 
 
         //Display the user options
         currProfile.displayProfileOptions();
