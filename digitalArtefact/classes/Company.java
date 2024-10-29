@@ -1,7 +1,11 @@
 //Composite Class for the Profile
-class Company {
+package classes;
+
+public class Company {
+
+    //Written to files
     private String companyName;
-    private String jobDescription;
+    private String jobDescription = "";
     private int yearsAtCompany;
     private int monthsAtCompany;
 
@@ -59,4 +63,27 @@ class Company {
             }
         }
     }
+
+    public String getNameForFile(){
+        return (this.companyName);
+    }
+
+    public String getCompanyName(){
+        return this.companyName;
+    }
+
+    public String getDescription(){
+        return this.jobDescription;
+    }
+    public int getYears(){
+        return this.yearsAtCompany;
+    }
+    public int getMonths(){
+        return this.monthsAtCompany;
+    }
+
+    public void loadDescription(String desc) {
+        this.jobDescription = desc;
+    }
+    
 }

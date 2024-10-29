@@ -1,5 +1,9 @@
 //Composite Class for a full Profile
-class Person {
+package classes;
+
+public class Person {
+
+    //This is what gets written to a file
     private String firstName;
     private String surname;
     private int age;
@@ -35,6 +39,21 @@ class Person {
                 break;
             }
         }
+    }
+    public String getNameForFile(){
+        return (this.firstName+this.surname);
+    }
+
+    public String getFirstName() {
+        return this.firstName;
+    }
+
+    public String getSurname() {
+        return this.surname;
+    }
+    
+    public int getAge() {
+        return this.age;
     }
     // public void howManyYearsLeft() {
     //     int diff = 40 - this.timeAtCompany;

@@ -4,6 +4,9 @@
  //Chat-GPT was asked if it was better to use composition or inheritance: (paraphrased)
  //"As the classes contained represent a "has-a" relationship as opposed to an "is-a", this is best suited
  //to composition."
+
+package classes;
+
 public class Profile {
     //Note for the code in the class:
     // - Always reference indexes and orders of things in the same order as they have been defined here
@@ -69,6 +72,23 @@ public class Profile {
 
     }
 
+    //Even though it looks very repetitive, but there is no more simple or better alternative really
+    //Alternative could be storing these in an array and then looping through it, but that is unecessary memory
+    public String[] linesToWrite() {
+        String[] linesToWrite = new String[7];
+        //format is :parameter => value;
+        //Person
+        linesToWrite[0] = ":=:firstName => "+this.person.getFirstName()+";";
+        linesToWrite[1] = ":=:surname => "+this.person.getSurname()+";";
+        linesToWrite[2] = ":=:age => "+this.person.getAge()+";";
+        //Company
+        linesToWrite[3] = ":=:companyName => "+this.company.getCompanyName()+";";
+        linesToWrite[4] = ":=:jobDescription => "+this.company.getDescription()+";";
+        linesToWrite[5] = ":=:yearsAtCompany => "+this.company.getYears()+";";
+        linesToWrite[6] = ":=:monthsAtCompany => "+this.company.getMonths()+";";
+
+        return linesToWrite;
+    }
 
     public Person getPerson() {
         return this.person;
@@ -80,5 +100,9 @@ public class Profile {
 
     public int getNumMethods() {
         return this.companyMethods.length + this.personMethods.length;
+    }
+
+    public void loadCompDescription(String desc) {
+        this.company.loadDescription(desc);
     }
 }
