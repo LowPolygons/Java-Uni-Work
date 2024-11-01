@@ -190,10 +190,10 @@ public class digitalArtefact {
         System.out.println("Welcome to the digital artefact. What is your first name?");
         String first = sc.nextLine();
         
-        System.out.println("What is your surname?");
+        System.out.println("\nWhat is your surname?");
         String sur = sc.nextLine();
     
-        System.out.println("Where do you work?");
+        System.out.println("\nWhere do you work?");
         String comp = sc.nextLine();
 
         //Once profiles are getting saved to files, confirm if they have an account if the name exists in a file
@@ -203,36 +203,45 @@ public class digitalArtefact {
 
         if ( !success.equals("") ) {
             //If it isnt empty, validate whether they have an account already
-            String confirm = yesOrNo(sc, "Do you already have a profile?");
+            String confirm = yesOrNo(sc, "\nDo you already have a profile?");
 
             if ( confirm.contains("yes") ) {
 
                 String name = success.substring(0, success.length()-8);
 
-                System.out.println("Loading profile..");
+                System.out.println("\nLoading profile..");
 
                 return recreateProfile(name);
             }
         } 
 
-        int age = validateInt(sc, "How old are you?");
+        int age = validateInt(sc, "\nHow old are you?");
 
-        int years = validateInt(sc, "How many years have you worked at "+comp);
-        int months = validateInt(sc, "How many leftover months have you worked at "+comp);
+        int years = validateInt(sc, "\nHow many years have you worked at "+comp);
+        int months = validateInt(sc, "\nHow many (unconsidered) months have you worked at "+comp);
 
-        System.out.println("Creating profile for user "+ first+ " "+ sur+ "... \n");
+        System.out.println("\nCreating profile for user "+ first+ " "+ sur+ "... \n");
 
         Profile newProfile = new Profile(first, sur, age, comp, years, months);
 
         return newProfile;
     }
-
+    public static void header() {
+        System.out.println("\n\n<==================================================>");
+            System.out.println("<================ Digital Artefact ================>");
+            System.out.println("<==================================================>\n");
+    }   
     //The main program flow
     public static void main (String[] args) {
+        header();
+
         Scanner sc = new Scanner(System.in);
 
         //Main method to create the Profile; NOT DIRECTLY THE CONSTRUCTOR
         Profile currProfile = initialiseProfile(sc);
+
+        //Prompting User to Fully finish their profile
+        System.out.println("\nIf this a new profile, we recommend Updating your Job description. If you are interested in working out, set up a Workout Plan for yourself!");
 
         //Display the user options
         currProfile.displayProfileOptions();
@@ -241,11 +250,15 @@ public class digitalArtefact {
         do {
             currProfile.promptUserSelection();
 
-            int menuChoice = intInRange(sc, 1, currProfile.getNumMethods() ); //sc.nextInt();
-
-            System.out.println("You chose option: "+menuChoice);
-
-            currProfile.chooseCorrectFunction(menuChoice);
+            int menuChoice = intInRange(sc, 1, currProfile.getNumMethods()+1); //Saving profile is a DA function, so must be considered seperately
+            
+            //Check if it is a Class Method option, or saving the file
+            if (menuChoice <= currProfile.getNumMethods()) {
+                currProfile.chooseCorrectFunction(menuChoice);
+            } else {
+                System.out.println("\n======================\nSaving Profile");
+                boolean success = saveProfile(currProfile);
+            }
 
             continueProgram = yesOrNo(sc, "\nDo you wish to continue? (Yes/No)");
 

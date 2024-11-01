@@ -1,5 +1,13 @@
 
 //Use inheritence here. Cardio, Powerlifting, Bodybuilding are all 'is-a' as a workout plan, so in this class be extremely generic
+
+//When a workout plan is created, it obviously must be stored in the profile for the user.
+//- Split the profile saving into better chartertings.
+//- A section should have a title being the composite class name
+//- In the workout case, the workout will be replaced by the child class type (powerlifting, bodybuilding, cardio)
+//- the variables will then be oriented around the given type
+//- How to store these though? Perhaps workout plans are separately stored
+
 package classes;
 
 import java.util.HashMap;

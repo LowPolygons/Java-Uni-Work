@@ -7,6 +7,9 @@
 
 package classes;
 
+import java.io.File;
+import java.util.Scanner;
+
 public class Profile {
     //Note for the code in the class:
     // - Always reference indexes and orders of things in the same order as they have been defined here
@@ -18,7 +21,7 @@ public class Profile {
     //Initialised not by the user directly
     private String[] personMethods;
     private String[] companyMethods;
-
+    private String[] profileMethods = {"Delete Profile"};
     //Another class for private information, accessible with a password would be a good additional feature
 
     public Profile(String first, String sur, int age, String comp, int years, int months) {
@@ -31,8 +34,8 @@ public class Profile {
 
     //Main methods go here, any that are not intrinsically related to the composite classes or are best suited here
     public void displayProfileOptions() {
-        System.out.println("\nPlease choose an option to explore your or expand on your: \n");
-        System.out.println("\nPerson Information: ");
+        System.out.println("\n======================\nPlease choose an option to explore your or expand on your: \n");
+        System.out.println("\n------------------------\nPersonal Options: \n");
 
         int tracker = 0;
 
@@ -43,7 +46,7 @@ public class Profile {
             System.out.print(this.personMethods[i]+"\n");
         }        
 
-        System.out.println("\nCompany Information: ");
+        System.out.println("\n------------------------\nCompany Options: \n");
 
         for (int i = 0; i < this.companyMethods.length; i++) {
             tracker++;
@@ -51,23 +54,34 @@ public class Profile {
             System.out.print("Option "+(tracker)+":");
             System.out.print(this.companyMethods[i]+"\n");
         }
+        System.out.println("\n------------------------\nProfile Options: \n");
+
+        for (int i = 0; i < this.profileMethods.length; i++) {
+            tracker++;
+
+            System.out.print("Option "+(tracker)+":");
+            System.out.print(this.profileMethods[i]+"\n");
+        }
+
+        System.out.print("Option "+(tracker+1)+": Save Profile");
     }
 
     public void promptUserSelection() {
-        int options = this.personMethods.length + this.companyMethods.length;
+        int options = this.personMethods.length + this.companyMethods.length + this.profileMethods.length + 1;//For saving
         System.out.println("\nPlease choose an option (1-"+options+")\n");
     }
 
     public void chooseCorrectFunction(int input) {
-
         if (input <= this.personMethods.length) {
             // Person methods
             this.person.chosenMethod(input);
         } 
         else if (input <= (this.personMethods.length + this.companyMethods.length)) {
             input = input-this.personMethods.length; //localise it to company method indexes
-            System.out.println(input);
             this.company.chosenMethod(input);
+        } else {
+            input = input-(this.personMethods.length + this.companyMethods.length);
+            this.chosenMethod(input);
         }
 
     }
@@ -90,6 +104,19 @@ public class Profile {
         return linesToWrite;
     }
 
+    public void chosenMethod(int input) {
+        System.out.print("\n");
+        switch (input) {
+            case 1: {
+                this.deleteProfile();
+                break;
+            }
+            default: {
+                break;
+            }
+        }
+    }
+
     public Person getPerson() {
         return this.person;
     }
@@ -99,10 +126,24 @@ public class Profile {
     }
 
     public int getNumMethods() {
-        return this.companyMethods.length + this.personMethods.length;
+        return this.companyMethods.length + this.personMethods.length + this.profileMethods.length;
     }
 
     public void loadCompDescription(String desc) {
         this.company.loadDescription(desc);
+    }
+
+    public void deleteProfile() {
+        System.out.println("\n======================");
+        
+        System.out.println("\nDeleting Profile. This will terminate the session.");
+
+        String fileName = (this.person.getFirstName()+this.person.getSurname()+this.company.getCompanyName()).toLowerCase();
+        File currentProfile = new File("profiles/"+fileName+".profile");
+
+        currentProfile.delete();
+
+        System.out.println("Closing Session..");
+        System.exit(0);
     }
 }

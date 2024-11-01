@@ -1,6 +1,8 @@
 //Composite Class for the Profile
 package classes;
 
+import java.util.*;
+
 public class Company {
 
     //Written to files
@@ -12,10 +14,19 @@ public class Company {
     //All options to be displayed
     private final String[] methods = {"Display Info", "Update Job Description"};
 
+    //Self Explanatory
     public boolean determineJobDescription() {
         boolean success = true;
 
-        System.out.println("Updating Job Description: ");
+        System.out.println("\n======================");
+        System.out.println("How would you describe your role in your job?");
+
+        Scanner sc = new Scanner(System.in);
+
+        String answer = sc.nextLine();
+
+        System.out.println("Updating Job Description");
+        this.jobDescription = answer;
 
         return success;
     }
@@ -33,6 +44,7 @@ public class Company {
 
     //Not quite polymorphism as this is composition, not inheritance.
     public void displayInfo() {
+        System.out.println("\n======================");
         System.out.println("Company Name: "+ this.companyName);
 
         System.out.print("Time at Company: ");
@@ -43,8 +55,13 @@ public class Company {
         //Not an else statement because I want this to print the months if the years is less than 2
         if ( yearsAtCompany < 2 )
             System.out.print(monthsAtCompany + " months ");
-
+        
         System.out.print("\n");
+
+        if (!this.jobDescription.equals("")) {
+            System.out.println("Job Description: "+this.jobDescription);
+        }
+
     }
 
     public void chosenMethod(int input) {

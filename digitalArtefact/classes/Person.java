@@ -24,6 +24,7 @@ public class Person {
     }
 
     public void displayInfo() {
+        System.out.println("\n======================");
         System.out.println("Name: "+this.firstName+" "+this.surname);
         System.out.println(this.firstName+ " "+ this.surname+ " is "+ this.age+ " years old.");
     }
@@ -55,8 +56,4 @@ public class Person {
     public int getAge() {
         return this.age;
     }
-    // public void howManyYearsLeft() {
-    //     int diff = 40 - this.timeAtCompany;
-    //     System.out.println("\nMost people work for 40 years. You have "+ diff +" years left.\n");
-    // }
 }

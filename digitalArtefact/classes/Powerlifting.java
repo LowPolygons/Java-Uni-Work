@@ -8,16 +8,17 @@ public class Powerlifting extends WorkoutPlan {
     private float maxSquat;
     private float maxBench;
     private float maxDeadlift;
-    //Clean and Jerk
-    private float maxCAJ;
+    private float maxCAJ;     //Clean and Jerk
 
     //HashMap<String, int> --> the int is an arbirtrary number to display how favourable the exercise is
     private HashMap<String, String> muscleGroups;
 
+    //First 3 args for super class, the rest are for this
     public Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, float mS, float mB, float mD, float caj) {
         //Can be initialised separately as it isnt a super important characteristic
         
-        //Super Class stuff
+        //Super Class stuff : WorkoutPlan isnt a non-parameter constructor, so
+        // in this constructor you need to get the parent constructor too
         super(numDayForSplit, numRestDays, idealLengthInMins);
 
         this.loadMuscleFavours(false, null);
