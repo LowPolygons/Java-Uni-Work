@@ -2,31 +2,20 @@
 package classes;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Powerlifting extends WorkoutPlan {
 
     private float maxSquat;
     private float maxBench;
     private float maxDeadlift;
-    private float maxCAJ;     //Clean and Jerk
-
-    //HashMap<String, int> --> the int is an arbirtrary number to display how favourable the exercise is
-    private HashMap<String, String> muscleGroups;
+    private float maxCAJ;     //Clean and Clean-And-Jerk
 
     //First 3 args for super class, the rest are for this
     public Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName) { //, float mS, float mB, float mD, float caj) {
-        //Can be initialised separately as it isnt a super important characteristic
-        
-        //Super Class stuff : WorkoutPlan isnt a non-parameter constructor, so
-        // in this constructor you need to get the parent constructor too
         super(numDayForSplit, numRestDays, idealLengthInMins, workoutName);
         
         this.promptPowerliftingConstructor();
-
-        // this.maxSquat = mS;
-        // this.maxBench = mB;
-        // this.maxDeadlift = mD;
-        // this.maxCAJ = caj;
     }
     public void promptPowerliftingConstructor() {
         // Do Something
@@ -43,4 +32,19 @@ public class Powerlifting extends WorkoutPlan {
 
         System.out.println("--------------------------------");
     }
+
+    public ArrayList<String> linesToWrite() {
+        ArrayList<String> linesToWrite = new ArrayList<String>();
+        linesToWrite.add("maxSquat => "+this.maxSquat+";");
+        linesToWrite.add("maxBench => "+this.maxBench+";");
+        linesToWrite.add("maxDeadlift => "+this.maxDeadlift+";");
+        linesToWrite.add("maxCAJ => "+this.maxCAJ+";");
+        linesToWrite.add("numDays => "+this.getDaySplit()+";");
+        linesToWrite.add("numRestDays => "+this.getRestDays()+";");
+        linesToWrite.add("workoutLength => "+this.getIdealLength()+";");
+
+        return linesToWrite;
+    }
+
+
 }

@@ -21,8 +21,6 @@ public class WorkoutPlan {
     //user can name their profiles
     private String workoutName;
 
-    public String[] getMethods();
-
     public WorkoutPlan(int numDayForSplit, int numRestDays, int idealLengthInMins, String workout_Name) {
         this.daySplit = numDayForSplit;
         this.restDays = numRestDays;
@@ -41,5 +39,22 @@ public class WorkoutPlan {
 
     public void updateLength(int _new) {
         this.idealLength = _new;
+    }
+
+    //Getters
+    public int getDaySplit() {
+      return this.daySplit;
+    }
+
+    public int getRestDays() {
+      return this.restDays;
+    }
+    
+    public int getIdealLength() {
+      return this.idealLength;
+    }
+    //Getter for file writing
+    public String getNameForFile() {
+      return this.workoutName;
     }
 }

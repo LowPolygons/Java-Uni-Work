@@ -1,4 +1,5 @@
 package classes;
+import java.util.ArrayList;
 
 public class Cardio extends WorkoutPlan {
     double fastestMile;
@@ -13,4 +14,15 @@ public class Cardio extends WorkoutPlan {
     public void promptCardioConstructor() {
         //Initialise
     }
+
+    public ArrayList<String> linesToWrite() {
+        ArrayList<String> linesToWrite = new ArrayList<String>();
+        
+        linesToWrite.add("numDays => "+this.getDaySplit()+";");
+        linesToWrite.add("numRestDays => "+this.getRestDays()+";");
+        linesToWrite.add("workoutLength => "+this.getIdealLength()+";");
+
+        return linesToWrite;
+    }
+
 }
