@@ -2,7 +2,6 @@
 package classes;
 
 public class Person {
-
     //This is what gets written to a file
     private String firstName;
     private String surname;

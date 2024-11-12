@@ -25,142 +25,8 @@ public class digitalArtefact {
     //The standard inputs for the construction of a Profile class (includes but not limited to)
     String[] listOfParameters = {"firstName", "surname", "age", "companyName", "jobDescription", "yearsAtCompany", "monthsAtCompany"};
 
-    public static boolean saveProfile(Profile saveMe){
-        String fileName = ((saveMe.getPerson()).getNameForFile() + (saveMe.getCompany()).getNameForFile()).toLowerCase();
-
-        File classInfo = new File("profiles/"+fileName+".profile");
-
-        //First try catch will create the file if it doesnt exist already
-        //createNewFile returns a boolean whether the file has been created or not: if it hasn't been created, then it already exists
-        try {
-            classInfo.createNewFile();
-        } catch (IOException error) {
-            System.out.println("There was an error creating the file.");
-            return false;
-        }
-
-        //Write to file
-        try {
-            // Line format is:
-            // :parameter => value;
-            // This will make searching and parsing easy
-            
-            //Needs to be done in the try
-            FileWriter writeToProfile = new FileWriter("profiles/"+fileName+".profile");
-
-            String[] lines = saveMe.linesToWrite();
-
-            //Didn't know java had this until now
-            for (String currLine : lines) {
-                writeToProfile.write(currLine+"\n");
-            }
-            writeToProfile.close();    
-
-        } catch (IOException error) {
-            System.out.println("There was an error saving the file");
-
-            return false;
-        }
-
-        return true;
-    }
-
-    public static Profile recreateProfile(String fileName) {
-        File openMe = new File("profiles/"+fileName+".profile");
-
-        Profile createdProfile;
-
-        //To store the results with keys, so that order doesn't matter when reforming the class
-        HashMap<String, String> profileValues = new HashMap<>();
-
-        try {
-            Scanner fileReader = new Scanner(openMe);
-
-            while (fileReader.hasNextLine()) {
-                String line = fileReader.nextLine();
-                //System.out.println(line); Works
-                String type = line.substring(line.indexOf(":=:")+3, line.indexOf("=>")-1); //WORK FROM HERE NEXT SESSION
-                String value = line.substring(line.indexOf("=>")+3, line.length()-1);
-
-                //Now the types and values are known and formatted correctly, add to the hash map
-                profileValues.put(type, value);
-            }
-
-            fileReader.close();
-
-        } catch (FileNotFoundException error) {
-            System.out.println("File not found.");
-        }
-        
-
-        //new Profile(first, sur, age, comp, years, months);
-
-        createdProfile = new Profile(
-            profileValues.get("firstName"),
-            profileValues.get("surname"),
-            Integer.parseInt(profileValues.get("age")),
-            profileValues.get("companyName"),
-            Integer.parseInt(profileValues.get("yearsAtCompany")),
-            Integer.parseInt(profileValues.get("monthsAtCompany"))
-        );
-
-        createdProfile.loadCompDescription(profileValues.get("jobDescription"));
-        
-        return createdProfile;
-    }
-    //A validation function until a yes or no is input
-    public static String yesOrNo(Scanner sc, String msg) {
-        String temp_input = "";
-
-        while ( !(temp_input.equals("yes") || temp_input.equals("no")) ) {
-            System.out.println(msg);
-            temp_input = sc.nextLine().toLowerCase();
-        }
-
-        return temp_input.toLowerCase();
-    }
-
-    //A validation function until an integer is put in
-    public static int validateInt(Scanner sc, String prompt) {
-        //scanner.hasNextInt() checks if the next input is a valid integer
-        System.out.println(prompt);
-        int output = 0;
-        boolean valid = false;
-
-        while (!valid) {
-            if (sc.hasNextInt()) {
-                valid = true;
-                output = sc.nextInt();
-            } else {
-                System.out.println("Invalid input. Try again: ");
-                sc.next(); //Skip over the given input
-            }
-        }
-
-        return output;
-    }
-
-    //Redundant code here from the validateInt function, but until an integer within a range is put in
-    public static int intInRange(Scanner sc, int lowerBound, int upperBound) {
-        int output = 0;
-        boolean valid = false;
-        
-        while (!valid) {
-            if (sc.hasNextInt()) {
-                valid = true;
-                output = sc.nextInt();
-                if ( !(output >= lowerBound && output <= upperBound) )
-                    valid = false;
-            } 
-            if (!valid) {
-                System.out.println("Invalid input. Try again: ");
-            }
-            
-            sc.nextLine(); //Skip over the given input
-        }
-
-        return output;
-    }
+    static FileManager fileManager; // = new FileManager();
+    static Validator validator;
 
     public static String profileExists(String firstName, String surname, String comp) {
         String fullName = (firstName+surname+comp).toLowerCase();
@@ -203,7 +69,7 @@ public class digitalArtefact {
 
         if ( !success.equals("") ) {
             //If it isnt empty, validate whether they have an account already
-            String confirm = yesOrNo(sc, "\nDo you already have a profile?");
+            String confirm = validator.yesOrNo(sc, "\nDo you already have a profile?");
 
             if ( confirm.contains("yes") ) {
 
@@ -211,26 +77,29 @@ public class digitalArtefact {
 
                 System.out.println("\nLoading profile..");
 
-                return recreateProfile(name);
+                return fileManager.recreateProfile(name);
             }
         } 
 
-        int age = validateInt(sc, "\nHow old are you?");
+        int age = validator.validateInt(sc, "\nHow old are you?");
 
-        int years = validateInt(sc, "\nHow many years have you worked at "+comp);
-        int months = validateInt(sc, "\nHow many (unconsidered) months have you worked at "+comp);
+        int years = validator.validateInt(sc, "\nHow many years have you worked at "+comp);
+        int months = validator.validateInt(sc, "\nHow many (unconsidered) months have you worked at "+comp);
 
         System.out.println("\nCreating profile for user "+ first+ " "+ sur+ "... \n");
 
+        // Null is the workout which comes later
         Profile newProfile = new Profile(first, sur, age, comp, years, months);
 
         return newProfile;
     }
+
     public static void header() {
         System.out.println("\n\n<==================================================>");
             System.out.println("<================ Digital Artefact ================>");
             System.out.println("<==================================================>\n");
     }   
+    
     //The main program flow
     public static void main (String[] args) {
         header();
@@ -250,23 +119,23 @@ public class digitalArtefact {
         do {
             currProfile.promptUserSelection();
 
-            int menuChoice = intInRange(sc, 1, currProfile.getNumMethods()+1); //Saving profile is a DA function, so must be considered seperately
+            int menuChoice = validator.intInRange(sc, 1, currProfile.getNumMethods()+1); //Saving profile is a DA function, so must be considered seperately
             
             //Check if it is a Class Method option, or saving the file
             if (menuChoice <= currProfile.getNumMethods()) {
                 currProfile.chooseCorrectFunction(menuChoice);
             } else {
                 System.out.println("\n======================\nSaving Profile");
-                boolean success = saveProfile(currProfile);
+                boolean success = fileManager.saveProfile(currProfile);
             }
 
-            continueProgram = yesOrNo(sc, "\nDo you wish to continue? (Yes/No)");
+            continueProgram = validator.yesOrNo(sc, "\nDo you wish to continue? (Yes/No)");
 
         } while (continueProgram.equals("yes"));
 
         System.out.println("Program Safely Terminating...");
         
-        boolean success = saveProfile(currProfile);
+        boolean success = fileManager.saveProfile(currProfile);
     }
 
 }

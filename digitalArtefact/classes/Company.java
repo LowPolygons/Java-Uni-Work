@@ -19,13 +19,13 @@ public class Company {
         boolean success = true;
 
         System.out.println("\n======================");
-        System.out.println("How would you describe your role in your job?");
+        System.out.println("How would you describe your role in your job?\n");
 
         Scanner sc = new Scanner(System.in);
 
         String answer = sc.nextLine();
 
-        System.out.println("Updating Job Description");
+        System.out.println("Updating Job Description..\n");
         this.jobDescription = answer;
 
         return success;

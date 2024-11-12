@@ -1,7 +1,6 @@
  //The overseeing class for the entire profile
  //Anything not immediately dependent on the class name to be put in a new class (like 3NF in Databases)
 
- //Chat-GPT was asked if it was better to use composition or inheritance: (paraphrased)
  //"As the classes contained represent a "has-a" relationship as opposed to an "is-a", this is best suited
  //to composition."
 
@@ -9,20 +8,20 @@ package classes;
 
 import java.io.File;
 import java.util.Scanner;
+import java.util.ArrayList;
+import classes.Validator;
 
 public class Profile {
-    //Note for the code in the class:
-    // - Always reference indexes and orders of things in the same order as they have been defined here
-    // - This ensures consistency and makes other methods much more simple
 
+    // Composite classes
     private Person person;
     private Company company;
-
+    private WorkoutPlan workout; //You can initalise this with a new Powerlifing() or bodybuilding or any child class, polymorphism baby what a time to be alive
+    
     //Initialised not by the user directly
     private String[] personMethods;
     private String[] companyMethods;
     private String[] profileMethods = {"Delete Profile"};
-    //Another class for private information, accessible with a password would be a good additional feature
 
     public Profile(String first, String sur, int age, String comp, int years, int months) {
         this.person = new Person(first, sur, age);
@@ -30,6 +29,52 @@ public class Profile {
 
         this.personMethods = this.person.getMethods();
         this.companyMethods = this.company.getMethods();
+        //then form the class
+    }
+
+    public void initialiseWorkout(Scanner sc, Validator validator) {
+        System.out.println("\n======================\nWorkout Plan");
+        //Check if they already have a workout
+        String answer = validator.yesOrNo(sc, "Do you already have a workout?\n");
+        if ( answer.equals("yes") ) {
+            //Load the workout
+            
+        } else {
+            //Get the 3 primary numbers, num of days, num of rests, ideal workout length
+            String workoutName = this.person.getNameForFile().toLowerCase();
+
+            System.out.println("\nHow many days a week would you like this workout to be?\n");
+
+            int numDays = validator.intInRange(sc, 1, 7);
+            int numRests = 7 - numDays;
+            int workoutLength = validator.validateInt(sc, "\n How long would you like each workout to be? (in minutes)\n");
+
+            //Determine workout type, create workout
+            System.out.println("\nPlease choose a workout type (1-3): ");
+            System.out.println("1. Powerlifting");
+            System.out.println("2. Bodybuilding");
+            System.out.println("3. Cardio");
+
+            int choice = validator.intInRange(sc, 1, 3);
+
+            switch (choice) {
+                case 1: {
+                    this.workout = new Powerlifting(numDays, numRests, workoutLength, workoutName);
+                    break;
+                }
+                case 2: {
+                    this.workout = new Bodybuilding(numDays, numRests, workoutLength, workoutName);
+                    break;
+                }
+                case 3: {
+                    this.workout = new Cardio(numDays, numRests, workoutLength, workoutName);
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+        }
     }
 
     //Main methods go here, any that are not intrinsically related to the composite classes or are best suited here
@@ -63,7 +108,7 @@ public class Profile {
             System.out.print(this.profileMethods[i]+"\n");
         }
 
-        System.out.print("Option "+(tracker+1)+": Save Profile");
+        System.out.print("Option "+(tracker+1)+": Save Profile\n");
     }
 
     public void promptUserSelection() {
@@ -88,18 +133,19 @@ public class Profile {
 
     //Even though it looks very repetitive, but there is no more simple or better alternative really
     //Alternative could be storing these in an array and then looping through it, but that is unecessary memory
-    public String[] linesToWrite() {
-        String[] linesToWrite = new String[7];
+
+    public ArrayList<String> linesToWrite() {
+        ArrayList<String> linesToWrite = new ArrayList<String>();
         //format is :parameter => value;
         //Person
-        linesToWrite[0] = ":=:firstName => "+this.person.getFirstName()+";";
-        linesToWrite[1] = ":=:surname => "+this.person.getSurname()+";";
-        linesToWrite[2] = ":=:age => "+this.person.getAge()+";";
+        linesToWrite.add("firstName => "+this.person.getFirstName()+";");
+        linesToWrite.add("surname => "+this.person.getSurname()+";");
+        linesToWrite.add("age => "+this.person.getAge()+";");
         //Company
-        linesToWrite[3] = ":=:companyName => "+this.company.getCompanyName()+";";
-        linesToWrite[4] = ":=:jobDescription => "+this.company.getDescription()+";";
-        linesToWrite[5] = ":=:yearsAtCompany => "+this.company.getYears()+";";
-        linesToWrite[6] = ":=:monthsAtCompany => "+this.company.getMonths()+";";
+        linesToWrite.add("companyName => "+this.company.getCompanyName()+";");
+        linesToWrite.add("jobDescription => "+this.company.getDescription()+";");
+        linesToWrite.add("yearsAtCompany => "+this.company.getYears()+";");
+        linesToWrite.add("monthsAtCompany => "+this.company.getMonths()+";");
 
         return linesToWrite;
     }

@@ -13,14 +13,21 @@ package classes;
 import java.util.HashMap;
 
 public class WorkoutPlan {
+    //key information across all workouts
     private int daySplit;
     private int restDays;
     private int idealLength;
 
-    public WorkoutPlan(int numDayForSplit, int numRestDays, int idealLengthInMins) {
+    //user can name their profiles
+    private String workoutName;
+
+    public String[] getMethods();
+
+    public WorkoutPlan(int numDayForSplit, int numRestDays, int idealLengthInMins, String workout_Name) {
         this.daySplit = numDayForSplit;
         this.restDays = numRestDays;
         this.idealLength = idealLengthInMins;
+        this.workoutName = workout_Name;
     }
 
     //Inidivudal setters

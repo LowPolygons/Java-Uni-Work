@@ -14,48 +14,22 @@ public class Powerlifting extends WorkoutPlan {
     private HashMap<String, String> muscleGroups;
 
     //First 3 args for super class, the rest are for this
-    public Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, float mS, float mB, float mD, float caj) {
+    public Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName) { //, float mS, float mB, float mD, float caj) {
         //Can be initialised separately as it isnt a super important characteristic
         
         //Super Class stuff : WorkoutPlan isnt a non-parameter constructor, so
         // in this constructor you need to get the parent constructor too
-        super(numDayForSplit, numRestDays, idealLengthInMins);
+        super(numDayForSplit, numRestDays, idealLengthInMins, workoutName);
+        
+        this.promptPowerliftingConstructor();
 
-        this.loadMuscleFavours(false, null);
-
-        this.maxSquat = mS;
-        this.maxBench = mB;
-        this.maxDeadlift = mD;
-        this.maxCAJ = caj;
+        // this.maxSquat = mS;
+        // this.maxBench = mB;
+        // this.maxDeadlift = mD;
+        // this.maxCAJ = caj;
     }
-
-    //Sets the favours
-    public void loadMuscleFavours(boolean hasFavours, String[] favours) {
-
-        this.muscleGroups = new HashMap<>();
-
-        String[] mgs = {
-                "Chest", 
-                "Shoulders/Delts", 
-                "Triceps", 
-                "Biceps", 
-                "Traps", 
-                "Lats", 
-                "Quads", 
-                "Hamstrings", 
-                "Calfs"
-            };
-
-        if (hasFavours) {
-            //Assume the favours will be in order
-            for (int i = 0; i < mgs.length; i++) { 
-                this.muscleGroups.put(mgs[i], favours[i]);
-            }
-        } else {
-            for (String currMuscle : mgs) {
-                this.muscleGroups.put(currMuscle, "1");
-            }
-        }
+    public void promptPowerliftingConstructor() {
+        // Do Something
     }
 
     //Adding ----s to separate termimal lines, makes it prettier/more readable
