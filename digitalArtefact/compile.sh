@@ -2,7 +2,7 @@
 
 echo "Compiling Child Classes"
 
-javac classes/Profile.java classes/Person.java classes/Company.java classes/WorkoutPlan.java classes/Powerlifting.java classes/FileManager.java classes/Validator.java classes/Cardio.java classes/Bodybuilding.java
+javac classes/Profile.java classes/Person.java classes/Company.java classes/WorkoutPlan.java classes/Powerlifting.java classes/FileManager.java classes/Validator.java classes/Cardio.java classes/Bodybuilding.java classes/Tester.java
  
 echo "Compiling Main Class"
 

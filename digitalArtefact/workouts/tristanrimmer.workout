@@ -1,0 +1,4 @@
+workoutStyle => Cardio;
+numDays => 7;
+numRestDays => 0;
+workoutLength => 80;

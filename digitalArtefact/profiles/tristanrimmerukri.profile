@@ -1,7 +1,7 @@
 firstName => Tristan;
-surname => RImmer;
+surname => Rimmer;
 age => 19;
 companyName => UKRI;
-jobDescription => Software Engineer;
+jobDescription => ;
 yearsAtCompany => 0;
 monthsAtCompany => 3;

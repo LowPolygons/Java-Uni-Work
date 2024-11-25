@@ -12,7 +12,7 @@ public class Powerlifting extends WorkoutPlan {
     private float maxCAJ;     //Clean and Clean-And-Jerk
 
     //First 3 args for super class, the rest are for this
-    public Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName) { //, float mS, float mB, float mD, float caj) {
+    public Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName, boolean alreadyExists) { //, float mS, float mB, float mD, float caj) {
         super(numDayForSplit, numRestDays, idealLengthInMins, workoutName);
         
         this.promptPowerliftingConstructor();
@@ -33,17 +33,19 @@ public class Powerlifting extends WorkoutPlan {
         System.out.println("--------------------------------");
     }
 
+    @Override
     public ArrayList<String> linesToWrite() {
-        ArrayList<String> linesToWrite = new ArrayList<String>();
-        linesToWrite.add("maxSquat => "+this.maxSquat+";");
-        linesToWrite.add("maxBench => "+this.maxBench+";");
-        linesToWrite.add("maxDeadlift => "+this.maxDeadlift+";");
-        linesToWrite.add("maxCAJ => "+this.maxCAJ+";");
-        linesToWrite.add("numDays => "+this.getDaySplit()+";");
-        linesToWrite.add("numRestDays => "+this.getRestDays()+";");
-        linesToWrite.add("workoutLength => "+this.getIdealLength()+";");
+        ArrayList<String> linesToSave = new ArrayList<String>();
+        linesToSave.add("workoutStyle => Powerlifting;");
+        linesToSave.add("maxSquat => "+this.maxSquat+";");
+        linesToSave.add("maxBench => "+this.maxBench+";");
+        linesToSave.add("maxDeadlift => "+this.maxDeadlift+";");
+        linesToSave.add("maxCAJ => "+this.maxCAJ+";");
+        linesToSave.add("numDays => "+this.getDaySplit()+";");
+        linesToSave.add("numRestDays => "+this.getRestDays()+";");
+        linesToSave.add("workoutLength => "+this.getIdealLength()+";");
 
-        return linesToWrite;
+        return linesToSave;
     }
 
 

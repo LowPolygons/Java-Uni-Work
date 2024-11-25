@@ -27,6 +27,7 @@ public class digitalArtefact {
 
     static FileManager fileManager; // = new FileManager();
     static Validator validator;
+    static Tester tester;
 
     public static String profileExists(String firstName, String surname, String comp) {
         String fullName = (firstName+surname+comp).toLowerCase();
@@ -123,7 +124,7 @@ public class digitalArtefact {
             
             //Check if it is a Class Method option, or saving the file
             if (menuChoice <= currProfile.getNumMethods()) {
-                currProfile.chooseCorrectFunction(menuChoice);
+                currProfile.chooseCorrectFunction(menuChoice, sc, validator);
             } else {
                 System.out.println("\n======================\nSaving Profile");
                 boolean success = fileManager.saveProfile(currProfile);
@@ -135,7 +136,36 @@ public class digitalArtefact {
 
         System.out.println("Program Safely Terminating...");
         
+
+        //Not directly a member of the tester class but can confirm if it get saved properly
+
         boolean success = fileManager.saveProfile(currProfile);
+
+        System.out.println("\n\nProfile save status: " + success);
+
+        if (success) {
+            System.out.println("Profile saving successful.");
+        } else {
+            System.out.println("Profile saving unsuccessful.");
+        }
+
+
+        //Then run tests:
+        
+        // Saving Workouts
+        System.out.println("\n\nRunning Workout Saving Tests...");
+
+        boolean pl = tester.PowerliftingSaver();
+        boolean c = tester.CardioSaver();
+        boolean bb = tester.BodybuildingSaver();
+
+        System.out.println(pl + "," + c + "," + bb);
+        
+        if(pl && c && bb) {
+            System.out.println("Workout Saving tests successful");
+        } else {
+            System.out.println("Workout Saving tests unsuccessful");
+        }
     }
 
 }

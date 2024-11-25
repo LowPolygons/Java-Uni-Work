@@ -1,11 +1,47 @@
+package classes;
+
 import java.util.*;
 import classes.*;
 
-package classes;
-
 public abstract class Tester {
-    boolean check_int_validation(ArrayList<String, int> values) {
-        //This checks the int validation, receiving an array list
-        //First item is the item to be validated, second int is the 
+
+    static FileManager fileMan;
+    
+    public static boolean PowerliftingSaver() {
+        
+        // For saving a file it doesn't matter the data so just punch them in here
+
+        //Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName) { //, float mS, float mB, float mD, float caj) {
+        WorkoutPlan test = new Powerlifting(4, 3, 45, "MyWorkoutPowerlifting", false);
+
+        ArrayList<String> lines = test.linesToWrite();
+
+        boolean success = fileMan.saveWorkout(test, lines);
+
+        return success;
+    }
+    
+    public static boolean CardioSaver() {
+
+        //Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName) { //, float mS, float mB, float mD, float caj) {
+        WorkoutPlan test = new Cardio(1, 7, 123, "MyWorkoutCardio", false);
+
+        ArrayList<String> lines = test.linesToWrite();
+
+        boolean success = fileMan.saveWorkout(test, lines);
+
+        return success;
+    }    
+
+    public static boolean BodybuildingSaver() {
+
+        //Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName) { //, float mS, float mB, float mD, float caj) {
+        WorkoutPlan test = new Bodybuilding(4, 3, 45, "MyWorkoutBodybuilding", false);
+
+        ArrayList<String> lines = test.linesToWrite();
+
+        boolean success = fileMan.saveWorkout(test, lines);
+
+        return success;
     }
 }

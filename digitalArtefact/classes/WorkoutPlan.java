@@ -11,8 +11,9 @@
 package classes;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 
-public class WorkoutPlan {
+public abstract class WorkoutPlan {
     //key information across all workouts
     private int daySplit;
     private int restDays;
@@ -57,4 +58,7 @@ public class WorkoutPlan {
     public String getNameForFile() {
       return this.workoutName;
     }
+
+    //Override methods 
+    public abstract ArrayList<String> linesToWrite();
 }

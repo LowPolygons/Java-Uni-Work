@@ -10,6 +10,7 @@ import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
 import classes.Validator;
+import classes.FileManager;
 
 public class Profile {
 
@@ -21,7 +22,7 @@ public class Profile {
     //Initialised not by the user directly
     private String[] personMethods;
     private String[] companyMethods;
-    private String[] profileMethods = {"Delete Profile"};
+    private String[] profileMethods = {"Create/Load a Workout", "Delete Profile"};
 
     public Profile(String first, String sur, int age, String comp, int years, int months) {
         this.person = new Person(first, sur, age);
@@ -33,6 +34,7 @@ public class Profile {
     }
 
     public void initialiseWorkout(Scanner sc, Validator validator) {
+        
         System.out.println("\n======================\nWorkout Plan");
         //Check if they already have a workout
         String answer = validator.yesOrNo(sc, "Do you already have a workout?\n");
@@ -59,15 +61,21 @@ public class Profile {
 
             switch (choice) {
                 case 1: {
-                    this.workout = new Powerlifting(numDays, numRests, workoutLength, workoutName);
+                    this.workout = new Powerlifting(numDays, numRests, workoutLength, workoutName, false);
+                    
+                    boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
                     break;
                 }
                 case 2: {
-                    this.workout = new Bodybuilding(numDays, numRests, workoutLength, workoutName);
+                    this.workout = new Bodybuilding(numDays, numRests, workoutLength, workoutName, false);
+                    
+                    boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
                     break;
                 }
                 case 3: {
-                    this.workout = new Cardio(numDays, numRests, workoutLength, workoutName);
+                    this.workout = new Cardio(numDays, numRests, workoutLength, workoutName, false);
+                    
+                    boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
                     break;
                 }
                 default: {
@@ -87,7 +95,7 @@ public class Profile {
         for (int i = 0; i < this.personMethods.length; i++) {
             tracker++;
 
-            System.out.print("Option "+(tracker)+":");
+            System.out.print("Option "+(tracker)+": ");
             System.out.print(this.personMethods[i]+"\n");
         }        
 
@@ -96,7 +104,7 @@ public class Profile {
         for (int i = 0; i < this.companyMethods.length; i++) {
             tracker++;
 
-            System.out.print("Option "+(tracker)+":");
+            System.out.print("Option "+(tracker)+": ");
             System.out.print(this.companyMethods[i]+"\n");
         }
         System.out.println("\n------------------------\nProfile Options: \n");
@@ -104,7 +112,7 @@ public class Profile {
         for (int i = 0; i < this.profileMethods.length; i++) {
             tracker++;
 
-            System.out.print("Option "+(tracker)+":");
+            System.out.print("Option "+(tracker)+": ");
             System.out.print(this.profileMethods[i]+"\n");
         }
 
@@ -116,7 +124,7 @@ public class Profile {
         System.out.println("\nPlease choose an option (1-"+options+")\n");
     }
 
-    public void chooseCorrectFunction(int input) {
+    public void chooseCorrectFunction(int input, Scanner sc, Validator validator) {
         if (input <= this.personMethods.length) {
             // Person methods
             this.person.chosenMethod(input);
@@ -126,7 +134,7 @@ public class Profile {
             this.company.chosenMethod(input);
         } else {
             input = input-(this.personMethods.length + this.companyMethods.length);
-            this.chosenMethod(input);
+            this.chosenMethod(input, sc, validator);
         }
 
     }
@@ -150,12 +158,16 @@ public class Profile {
         return linesToWrite;
     }
 
-    public void chosenMethod(int input) {
+    public void chosenMethod(int input, Scanner sc, Validator validator) {
         System.out.print("\n");
         switch (input) {
             case 1: {
-                this.deleteProfile();
+                this.initialiseWorkout(sc, validator);
                 break;
+            }
+            case 2: {
+                this.deleteProfile();
+                break;                
             }
             default: {
                 break;

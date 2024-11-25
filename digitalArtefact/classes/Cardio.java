@@ -5,7 +5,7 @@ public class Cardio extends WorkoutPlan {
     double fastestMile;
     double powerOutput;
 
-    public Cardio(int numDays, int numRests, int length, String workoutName) {
+    public Cardio(int numDays, int numRests, int length, String workoutName, boolean alreadyExists) {
         super(numDays, numRests, length, workoutName);
 
         this.promptCardioConstructor();
@@ -16,13 +16,14 @@ public class Cardio extends WorkoutPlan {
     }
 
     public ArrayList<String> linesToWrite() {
-        ArrayList<String> linesToWrite = new ArrayList<String>();
+        ArrayList<String> linesToSave = new ArrayList<String>();
         
-        linesToWrite.add("numDays => "+this.getDaySplit()+";");
-        linesToWrite.add("numRestDays => "+this.getRestDays()+";");
-        linesToWrite.add("workoutLength => "+this.getIdealLength()+";");
+        linesToSave.add("workoutStyle => Cardio;");
+        linesToSave.add("numDays => "+this.getDaySplit()+";");
+        linesToSave.add("numRestDays => "+this.getRestDays()+";");
+        linesToSave.add("workoutLength => "+this.getIdealLength()+";");
 
-        return linesToWrite;
+        return linesToSave;
     }
 
 }

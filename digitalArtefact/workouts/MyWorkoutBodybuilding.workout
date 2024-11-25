@@ -1,0 +1,8 @@
+workoutStyle => Bodybuilding;
+numDays => 4;
+numRestDays => 3;
+workoutLength => 45;
+bodyFatPercentage => 10.0;
+bodyWeight => 97.0;
+dailyCalories => 2800.0;
+dailyProtein => 80.0;
