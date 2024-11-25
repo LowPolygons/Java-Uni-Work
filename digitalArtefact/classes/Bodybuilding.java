@@ -1,7 +1,11 @@
 package classes;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import java.util.HashMap;
+import java.io.File;  // Import the File class
 import classes.Validator;
+import classes.FileManager;
 
 public class Bodybuilding extends WorkoutPlan {
     double bodyFatPercentage;
@@ -23,6 +27,12 @@ public class Bodybuilding extends WorkoutPlan {
             this.dailyCalories = Validator.validateDouble(sc, "\nHow many calories can you take in to maintain your bodyweight?\n");
             this.dailyProtein = Validator.validateDouble(sc, "\nHow many grams of protein do you take in per day?\n");
         } else {
+            HashMap<String, String> args = FileManager.keyAndVals(new File("workouts/"+this.getNameForFile()+".workout"));
+
+            this.bodyFatPercentage = Double.parseDouble(args.get("bodyFatPercentage"));
+            this.bodyWeight = Double.parseDouble(args.get("bodyWeight"));
+            this.dailyCalories = Double.parseDouble(args.get("dailyCalories"));
+            this.dailyProtein = Double.parseDouble(args.get("dailyProtein"));
             //Load them in from the file
         }
         //Print a Disclaimer
@@ -45,4 +55,12 @@ public class Bodybuilding extends WorkoutPlan {
         return linesToSave;
     }
 
+    @Override
+    public void displayInformation() {
+        System.out.println("\n----------------------\n");
+        System.out.println("Current Bodyweight: "+ this.bodyWeight + "Kg");
+        System.out.println("Current Bodyfat Percentage: "+ this.bodyFatPercentage + "%");
+        System.out.println("Current Maintenance Calories: "+ this.dailyCalories + "Kcal");
+        System.out.println("\n----------------------\n");
+    }
 }

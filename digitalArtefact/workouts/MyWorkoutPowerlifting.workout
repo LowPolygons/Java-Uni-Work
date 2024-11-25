@@ -1,8 +1,8 @@
 workoutStyle => Powerlifting;
-maxSquat => 0.0;
-maxBench => 0.0;
-maxDeadlift => 0.0;
-maxCAJ => 0.0;
+maxSquat => 10.0;
+maxBench => 10.0;
+maxDeadlift => 101.0;
+maxCAJ => 1.0;
 numDays => 4;
 numRestDays => 3;
 workoutLength => 45;

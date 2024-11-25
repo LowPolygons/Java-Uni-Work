@@ -83,16 +83,12 @@ public abstract class FileManager {
         //To store the results with keys, so that order doesn't matter when reforming the class
         HashMap<String, String> profileValues = keyAndVals(openMe); 
 
+        for (String key : profileValues.keySet()) {
+            System.out.println(key+": "+profileValues.get(key));
+        }
+
         //new Profile(first, sur, age, comp, years, months);
-        switch (profileValues.get("workoutType") ){
-            case "Cardio":
-                return new Cardio(
-                    Integer.parseInt(profileValues.get("numDays")),
-                    Integer.parseInt(profileValues.get("numRestDays")),
-                    Integer.parseInt(profileValues.get("workoutLength")),
-                    fileName,
-                    true
-                );
+        switch (profileValues.get("workoutStyle") ){
             case "Bodybuilding":
                 return new Bodybuilding(
                     Integer.parseInt(profileValues.get("numDays")),
@@ -110,7 +106,7 @@ public abstract class FileManager {
                     true
                 );
             default:
-                return new Cardio(0, 0, 0, "FILE_DOES_NOT_EXIST_EXCEPTION", true);
+                return new Bodybuilding(0, 0, 0, "FILE_DOES_NOT_EXIST_EXCEPTION", true);
         }
     }
 

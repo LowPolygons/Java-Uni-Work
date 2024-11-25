@@ -156,12 +156,11 @@ public class digitalArtefact {
         System.out.println("\n\nRunning Workout Saving Tests...");
 
         boolean pl = tester.PowerliftingSaver();
-        boolean c = tester.CardioSaver();
         boolean bb = tester.BodybuildingSaver();
 
-        System.out.println(pl + "," + c + "," + bb);
+        System.out.println(pl + "," + bb);
         
-        if(pl && c && bb) {
+        if(pl && bb) {
             System.out.println("Workout Saving tests successful");
         } else {
             System.out.println("Workout Saving tests unsuccessful");

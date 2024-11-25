@@ -61,4 +61,5 @@ public abstract class WorkoutPlan {
 
     //Override methods 
     public abstract ArrayList<String> linesToWrite();
+    public abstract void displayInformation();
 }

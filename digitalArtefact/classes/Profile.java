@@ -39,8 +39,14 @@ public class Profile {
         //Check if they already have a workout
         String answer = validator.yesOrNo(sc, "Do you already have a workout?\n");
         if ( answer.equals("yes") ) {
-            //Load the workout
-            
+            //Get the 3 primary numbers, num of days, num of rests, ideal workout length
+            String workoutName = this.person.getNameForFile().toLowerCase();
+
+            System.out.println(workoutName);
+
+            this.workout = FileManager.recreateWorkout(workoutName);
+
+            this.workout.displayInformation();
         } else {
             //Get the 3 primary numbers, num of days, num of rests, ideal workout length
             String workoutName = this.person.getNameForFile().toLowerCase();
@@ -55,27 +61,28 @@ public class Profile {
             System.out.println("\nPlease choose a workout type (1-3): ");
             System.out.println("1. Powerlifting");
             System.out.println("2. Bodybuilding");
-            System.out.println("3. Cardio");
 
-            int choice = validator.intInRange(sc, 1, 3);
+            int choice = validator.intInRange(sc, 1, 2);
 
             switch (choice) {
                 case 1: {
                     this.workout = new Powerlifting(numDays, numRests, workoutLength, workoutName, false);
                     
                     boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
+
+                    if (success) {         
+                        this.workout.displayInformation();
+                    }
                     break;
                 }
                 case 2: {
                     this.workout = new Bodybuilding(numDays, numRests, workoutLength, workoutName, false);
                     
                     boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
-                    break;
-                }
-                case 3: {
-                    this.workout = new Cardio(numDays, numRests, workoutLength, workoutName, false);
-                    
-                    boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
+
+                    if (success) {         
+                        this.workout.displayInformation();
+                    }
                     break;
                 }
                 default: {

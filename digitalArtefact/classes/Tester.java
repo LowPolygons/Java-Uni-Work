@@ -20,18 +20,6 @@ public abstract class Tester {
 
         return success;
     }
-    
-    public static boolean CardioSaver() {
-
-        //Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName) { //, float mS, float mB, float mD, float caj) {
-        WorkoutPlan test = new Cardio(1, 7, 123, "MyWorkoutCardio", false);
-
-        ArrayList<String> lines = test.linesToWrite();
-
-        boolean success = fileMan.saveWorkout(test, lines);
-
-        return success;
-    }    
 
     public static boolean BodybuildingSaver() {
 
