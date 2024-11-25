@@ -1,0 +1,28 @@
+
+
+- Secondary Feature: Reuse the sandfall project
+	-Allow the user to modify the initial parameters such as the dimensions, and the obstacles
+	-Allow control on how many different types of sand there are, as well as where they spawn
+	-Give the option to write the output to a file if they want to look at it, but give the option to see it in terminal
+
+	-When storing in a file, use a HashMap as usual but have a little things defined in the constructor as possible as this allows for more fine tuned file reading
+	-Have a value in the file which specifies how many obstacles there are, and this is then used to search for the obstacles, which can be simply named `obstacle1` `obstacle2` etc
+	
+	-Include circles , could be interesting
+	-THIS MAY BE OPTIMISTIC FOR THE TIME AVAILABLE: Allow the obstacles to not necessarily be made of immovable material. Perhaps instead of the obstacles being obstacles, they are called objects
+	and they can either accompany or exclusively make up the entire programs contents
+
+	-For random distribution, this is either an on or off switch and is to be used exclusively as it is in the standalone sand project (where it gets more sparse towards the bottom)
+		-For clarification, additional objects should be available, but you cant modify how the random works 
+
+
+- Give functionality to the Powerlifting and Bodybuilding categories
+	-What should each of them do?
+		-Bodybuilding will focus on a week to week basis and will be about increasing strength per week which will bring along size naturally (deep stretch stuff)
+		-All exercises should be in reference to RPE 1-10.
+		-Ensure to include the definitions for terms at the top such as MYOREPS, Long Lengthened Partials, etc
+	
+		-Powerlifting should be more oriented specifically on the SBDC exercises, and refer to other ones as 'support groups'
+		-Reference diet but without figures so it can be a piece of advice rather than something that updates
+		-Talk about how often to got for PRs. On days when going for a PR reference the numerical figures, otherwise talk about RPE or top set reps (eg top set 2 reps)
+

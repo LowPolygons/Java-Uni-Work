@@ -14,4 +14,4 @@ java digitalArtefact
 
 echo "Removing binaries"
 
-rm classes/Profile.class classes/Person.class classes/Company.class classes/WorkoutPlan.class classes/Powerlifting.class classes/FileManager.class classes/Validator.class digitalArtefact.class classes/Bodybuilding.class
+rm classes/Profile.class classes/Person.class classes/Company.class classes/WorkoutPlan.class classes/Powerlifting.class classes/FileManager.class classes/Validator.class digitalArtefact.class classes/Bodybuilding.class classes/Tester.class

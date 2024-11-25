@@ -1,10 +1,10 @@
 import java.util.*; //p sure this just means all
 
 public class sand {
-    static int[] dims   = {1200,260};
+    static int[] dims   = {300,260};
     //static int[] dims   = {600,130};
 
-    public static void printResult(int[] dims, int[][] positions, String[] orderOfWeight, String[] escapeCodes) {
+    public static void printResult(int[] dims, int[][] positions, String[] orderOfWeight) {
         String currLine = "";
         for (int y = 1; y <= dims[1]; y++) {
 
@@ -47,7 +47,6 @@ public class sand {
         int[][] positions = new int[dims[0]-2][dims[1]-2];
         //the first and last item represent air and the borders respectfully
         String[] orderOfWeight = {" ","1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "Z", "X", "C", "V", "B", "N", "M", "=", "-", "[", "]", ";", "'", ",", ".", "/", "`", "(", ")", "\\", "!", "£", "$", "%", "^", "&", "*", "{", "}", ":", "@", "'", "~", "<", ">", "?", "#"};
-        String[] escapeCodes = {"\033[30;40m", "\033[31;40m", "\033[32;40m", "\033[33;40m", "\033[34;40m", "\033[35;40m", "\033[36;40m", "\033[37;40m", "\033[90;40m", "\033[91;40m", "\033[92;40m", "\033[93;40m", "\033[94;40m", "\033[95;40m", "\033[96;40m", "\033[97;40m", "\033[30;41m", "\033[31;41m", "\033[32;41m", "\033[33;41m", "\033[34;41m", "\033[35;41m", "\033[36;41m", "\033[37;41m", "\033[90;41m", "\033[91;41m", "\033[92;41m", "\033[93;41m", "\033[94;41m", "\033[95;41m", "\033[96;41m", "\033[97;41m", "\033[30;42m", "\033[31;42m", "\033[32;42m", "\033[33;42m", "\033[34;42m", "\033[35;42m", "\033[36;42m", "\033[37;42m", "\033[90;42m", "\033[91;42m", "\033[92;42m", "\033[93;42m", "\033[94;42m", "\033[95;42m", "\033[96;42m", "\033[97;42m", "\033[30;43m", "\033[31;43m", "\033[32;43m", "\033[33;43m", "\033[34;43m", "\033[35;43m", "\033[36;43m", "\033[37;43m", "\033[90;43m", "\033[91;43m", "\033[92;43m", "\033[93;43m", "\033[94;43m", "\033[95;43m", "\033[96;43m", "\033[97;43m", "\033[30;44m", "\033[31;44m", "\033[32;44m", "\033[33;44m", "\033[34;44m", "\033[35;44m", "\033[36;44m", "\033[37;44m", "\033[90;44m", "\033[91;44m", "\033[92;44m", "\033[93;44m", "\033[94;44m", "\033[95;44m", "\033[96;44m", "\033[97;44m", "\033[30;45m", "\033[31;45m", "\033[32;45m", "\033[33;45m", "\033[34;45m", "\033[35;45m", "\033[36;45m", "\033[37;45m", "\033[90;45m", "\033[91;45m", "\033[92;45m", "\033[93;45m", "\033[94;45m", "\033[95;45m", "\033[96;45m", "\033[97;45m", "\033[30;46m", "\033[31;46m", "\033[32;46m", "\033[33;46m", "\033[34;46m", "\033[35;46m", "\033[36;46m", "\033[37;46m", "\033[90;46m", "\033[91;46m", "\033[92;46m", "\033[93;46m", "\033[94;46m", "\033[95;46m", "\033[96;46m", "\033[97;46m", "\033[30;47m", "\033[31;47m", "\033[32;47m", "\033[33;47m", "\033[34;47m", "\033[35;47m", "\033[36;47m", "\033[37;47m", "\033[90;47m", "\033[91;47m", "\033[92;47m", "\033[93;47m", "\033[94;47m", "\033[95;47m", "\033[96;47m", "\033[97;47m"};
         int timeSteps = 40000;
         int obstacleCount = 5;
         boolean hasMoved = false;
@@ -57,6 +56,7 @@ public class sand {
         for (int y = 0; y < dims[1]-2; y++) {
             for (int x = 0; x < dims[0]-2; x++) {
                 double rand = Math.random();
+                //Remember the beneath math.random is changing for every pixel, thats why the distribution gets so small towards the end
                 if ( y <= (dims[1] * Math.random()) ) { //&& (x <= (dims[0]*Math.random()))
                     positions[x][y] = (int)(rand*(orderOfWeight.length-2)) + 1; //-2 becayse you want to ignroe the last and first item, +1 to offset
                 }
@@ -69,7 +69,7 @@ public class sand {
         //generate some obstacles
         positions = addObjects(dims, positions, orderOfWeight, obstacleCount);
 
-        printResult(dims, positions, orderOfWeight, escapeCodes);
+        printResult(dims, positions, orderOfWeight);
         //simulation
         for (int i = 0; i < timeSteps; i++) {
             hasMoved = false;
@@ -114,6 +114,6 @@ public class sand {
                 break;
             }
         }
-        printResult(dims, positions, orderOfWeight, escapeCodes);
+        printResult(dims, positions, orderOfWeight);
     }
 }

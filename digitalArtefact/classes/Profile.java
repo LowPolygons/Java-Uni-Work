@@ -38,9 +38,11 @@ public class Profile {
         System.out.println("\n======================\nWorkout Plan");
         //Check if they already have a workout
         String answer = validator.yesOrNo(sc, "Do you already have a workout?\n");
-        if ( answer.equals("yes") ) {
+        String workoutName = this.person.getNameForFile().toLowerCase();
+        
+        File possibleExistance = new File("workouts/"+workoutName+".workout");
+        if ( answer.equals("yes") && possibleExistance.exists()) {
             //Get the 3 primary numbers, num of days, num of rests, ideal workout length
-            String workoutName = this.person.getNameForFile().toLowerCase();
 
             System.out.println(workoutName);
 
@@ -48,8 +50,9 @@ public class Profile {
 
             this.workout.displayInformation();
         } else {
-            //Get the 3 primary numbers, num of days, num of rests, ideal workout length
-            String workoutName = this.person.getNameForFile().toLowerCase();
+            //If they said yes but a file doesnt exist so the flow of the program doesn't look rubbish
+            if (answer.equals("yes"))
+                System.out.println("\nNo existing workout found, creating a new one..");
 
             System.out.println("\nHow many days a week would you like this workout to be?\n");
 

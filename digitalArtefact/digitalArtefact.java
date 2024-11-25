@@ -83,7 +83,6 @@ public class digitalArtefact {
         } 
 
         int age = validator.validateInt(sc, "\nHow old are you?");
-
         int years = validator.validateInt(sc, "\nHow many years have you worked at "+comp);
         int months = validator.validateInt(sc, "\nHow many (unconsidered) months have you worked at "+comp);
 

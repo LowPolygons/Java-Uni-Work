@@ -9,6 +9,8 @@ import java.io.File;  // Import the File class
 import classes.Validator;
 import classes.FileManager;
 
+
+//All the nitty gritty of the workouts is done. Next step on this is just functionality
 public class Powerlifting extends WorkoutPlan {
 
     private double maxSquat;
