@@ -124,6 +124,33 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
 
     }
 
+    public void CuttingBulking() {
+        System.out.println("\n When working out, you go through cutting and bulking phases.");
+        System.out.println("\n Bulking: This is your period when you are putting on size and muscle, and you fuel this by consuming more calories than your maintenance calories.");
+        System.out.println("Cutting: This is your phase where you up your protein intake, consume less calories than your maintenance to drop body weight, and let your muscle fibers become more visible as you get more 'shredded.'");
+
+        //Calculate calories stuff.
+        double[] bulkingCalories = {this.dailyCalories * 1.05, this.dailyCalories*1.2};
+        double[] cuttingCalories = {this.dailyCalories * 0.775, this.dailyCalories*0.925};
+
+        System.out.println("\nFor your bodyweight and maintenance calories, on a bulking phase we recommend upping your calorie consumption to somewhere in the range of " + (int)bulkingCalories[0] + "Kcal to " + (int)bulkingCalories[1] + "Kcal.");
+        System.out.printlnI("For cutting, we recommend dropping to between" + (int)cuttingCalories[0] + "Kcal to " + (int)cuttingCalories[1] + "Kcal.");
+
+        //Protein things
+
+        const double kgToLb = 2.20462;
+
+        double bulkingProteinLambda = 0.7
+        double cuttingProteinLambda = 1
+
+        double bulkingProtein = this.bodyWeight * kgToLb * bulkingProteinLambda;
+        double cuttingProtein = this.bodyWeight * kgToLb * cuttingProteinLambda;
+
+        System.out.println("\nOn a bulking phase, to maximise muscle growth we recommend taking your protein intake to approximately "+(int)bulkingProtein + " grams of protein per day.");
+        System.out.println("On a cutting phase, we recommend taking your protein intake to approximately " + (int)cuttingProtein + " grams of protein per day.");
+        
+    }
+
     //Bit of a mess but it functions nicely
     public HashMap<String, String> WeeklyRoutineCalculator(int numDays) {
         // It is already in the range of 1 to 7, and num rests is calculated from that
