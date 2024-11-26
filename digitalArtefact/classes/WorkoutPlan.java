@@ -12,6 +12,7 @@ package classes;
 
 import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import interfaces.WorkoutBTS;
 
@@ -61,4 +62,26 @@ public abstract class WorkoutPlan implements WorkoutBTS {
     public String getNameForFile() {
       return this.workoutName;
     }
+
+    //Both will use this so may as well store as a concrete super method
+    public void WorkoutInstance() {
+      //Display user options in a while loop
+      
+      Scanner sc = new Scanner(System.in);
+
+      boolean breakOut = false;
+
+      do {
+        this.perWorkoutFunc(sc);
+
+        String result = Validator.yesOrNo(sc, "Do you want to continue?");
+
+        if (result.toLowerCase().equals("no"))
+          breakOut = true;
+
+      } 
+      while( !breakOut );
+  }
+    //Override this
+    public abstract void perWorkoutFunc(Scanner sc);
 }

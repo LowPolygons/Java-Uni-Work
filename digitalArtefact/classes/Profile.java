@@ -47,8 +47,6 @@ public class Profile {
             System.out.println(workoutName);
 
             this.workout = FileManager.recreateWorkout(workoutName);
-
-            this.workout.displayInformation();
         } else {
             //If they said yes but a file doesnt exist so the flow of the program doesn't look rubbish
             if (answer.equals("yes"))
@@ -82,10 +80,7 @@ public class Profile {
                     this.workout = new Bodybuilding(numDays, numRests, workoutLength, workoutName, false);
                     
                     boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
-
-                    if (success) {         
-                        this.workout.displayInformation();
-                    }
+                    
                     break;
                 }
                 default: {

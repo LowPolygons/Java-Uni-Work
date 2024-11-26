@@ -4,6 +4,8 @@ import java.util.Scanner;
 
 import java.util.HashMap;
 import java.io.File;  // Import the File class
+
+//Dont have to instantiate these as they are abstract classes
 import classes.Validator;
 import classes.FileManager;
 
@@ -18,10 +20,13 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
     public Bodybuilding(int numDays, int numRests, int length, String workoutName, boolean alreadyExists) {
         super(numDays, numRests, length, workoutName);
 
-        this.promptBodybuildingConstructor(alreadyExists);
+        this.promptLocalConstructor(alreadyExists);
+
+        this.WorkoutInstance();
     }
 
-    public void promptBodybuildingConstructor(boolean alreadyExists) {
+    @Override
+    public void promptLocalConstructor(boolean alreadyExists) {
         Scanner sc = new Scanner(System.in);
         if (!alreadyExists) {
             this.bodyFatPercentage = Validator.validateDouble(sc, "\nWhat is your Body Fat Percentage?\n");
@@ -38,6 +43,11 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
         }
         //Print a Disclaimer
         System.out.println("\n Important disclaimer: This is to be used as a guide to your workout, rather than a concrete bible workout.\n");
+
+        //Brief intro
+        System.out.println("\n-------------------------------\n");
+        System.out.println("This Workout plan will serve as a week-to-week guide on your training. Bodybuilding is not focused on PRs, but muscle Hypertrophy.");
+        System.out.println("You have " + this.getDaySplit() + " days per week.");
     }
  
     @Override 
@@ -63,5 +73,142 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
         System.out.println("Current Bodyfat Percentage: "+ this.bodyFatPercentage + "%");
         System.out.println("Current Maintenance Calories: "+ this.dailyCalories + "Kcal");
         System.out.println("\n----------------------\n");
+    }
+
+    //This is an override from the parent class
+
+    @Override
+    public void perWorkoutFunc(Scanner sc) {
+        //The workout plan, recalculated at the start every instance incase they change the split
+        HashMap<String, String> plan = WeeklyRoutineCalculator(this.getDaySplit());
+
+        //Hardcoded because this is like an embedded system
+        System.out.println("\nOptions: \n");
+        System.out.println("1. Change Number of Working Days");
+        System.out.println("2. Display Weekly Split");
+        System.out.println("3. Cutting and Bulking Advice");
+        System.out.println("4. What Exercises Per Muscle?");
+        System.out.println("5. Delete Workout");
+        System.out.println("6. Skip this section.");
+
+        System.out.println("\nPlease choose 1-5");
+        int choice = Validator.intInRange(sc, 1, 6);
+
+        switch (choice) {
+            case 1:
+                System.out.println("\nPlease choose a new number of working days.");
+                int newNumDays = Validator.intInRange(sc, 1, 7);
+                this.updateNumDays(newNumDays);
+                this.updateNumRests(7 - newNumDays);
+                break;
+            case 2:
+                System.out.println("\nHere is your weekly split. For exercises, check out the Exercises Per Muscle section.\n");
+
+                String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+                for (String day : days) {
+                    System.out.println(day + ": " + plan.get(day));
+                }
+                break;
+            case 3:
+                //Advice on cutting and bulking with reference to calorific intake and protein
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                //Do nothing
+                break;
+        }
+
+    }
+
+    //Bit of a mess but it functions nicely
+    public HashMap<String, String> WeeklyRoutineCalculator(int numDays) {
+        // It is already in the range of 1 to 7, and num rests is calculated from that
+        String[] gymDays = {"Push", "Pull", "Legs", "Any"}; //the Any is for a 7 day split
+
+        HashMap<String, String> returnValue = new HashMap<String, String>();
+
+        returnValue.put("Monday", "Rest");
+        returnValue.put("Tuesday", "Rest");
+        returnValue.put("Wednesday", "Rest");
+        returnValue.put("Thursday", "Rest");
+        returnValue.put("Friday", "Rest");
+        returnValue.put("Saturday", "Rest");
+        returnValue.put("Sunday", "Rest");
+
+        if (numDays < gymDays.length)
+            System.out.println("\n The number of days you have chosen to work out will not yeild you results as effective as they could be. \n");
+
+            switch (numDays) {
+                case 1:
+                    System.out.println("Due to this being a 1 day split, do the planned workout on any day of the week you want.");
+                    returnValue.put("Wednesday", gymDays[0] + ", " + gymDays[1] + ", " + gymDays[2]);
+
+                    break;
+                case 2:
+                    System.out.println("Due to this being a 2 day split, do the days on any two days of the week.");
+                    returnValue.put("Tuesday", gymDays[0] + ", " + gymDays[1]);
+                    returnValue.put("Thursday", gymDays[2]);
+
+                    break;
+                case 3:
+                    System.out.println("A Three day split will let you hit each muscle group with once a week without residual fatigue.");
+
+                    returnValue.put("Monday", gymDays[0]);
+                    returnValue.put("Wednesday", gymDays[1]);
+                    returnValue.put("Friday", gymDays[2]);
+
+                    break;
+                case 4:
+                    System.out.println("A four day split will represent an 'Upper / Lower' split, hitting each group twice per week.");
+
+                    returnValue.put("Monday", gymDays[0] + ", " + gymDays[1]);
+                    returnValue.put("Tuesday", gymDays[2]);
+
+                    returnValue.put("Thursday", gymDays[0] + ", " + gymDays[1]);
+                    returnValue.put("Friday", gymDays[2]);
+                    break;
+                case 5:
+                    System.out.println("A five day split will represent a combination of a Push-Pull-Legs and 'Upper / Lower' split, hitting each group twice per week.");
+
+                    returnValue.put("Monday", gymDays[0] + ", " + gymDays[1]);
+                    returnValue.put("Tuesday", gymDays[2]);
+
+                    returnValue.put("Thursday", gymDays[0]);
+                    returnValue.put("Friday", gymDays[1]);
+                    returnValue.put("Saturday", gymDays[2]);
+                    break;                
+                case 6:
+                    System.out.println("A six day split is an optimised Push-Pull-Legs workout hitting each group twice per week");
+
+                    returnValue.put("Monday", gymDays[0]);
+                    returnValue.put("Tuesday", gymDays[1]);
+                    returnValue.put("Wednesday", gymDays[2]);
+                    
+                    returnValue.put("Friday", gymDays[0]);
+                    returnValue.put("Saturday", gymDays[1]);
+                    returnValue.put("Sunday", gymDays[2]);
+                    break;
+                case 7:
+                    System.out.println("A routine with no dedicated rest day may not be optimal. On the day which has 'Any', take it easy and hit only smaller muscle groups that aren't fatigued and aren't worked out the followed day.");
+
+                    
+                    returnValue.put("Monday", gymDays[0]);
+                    returnValue.put("Tuesday", gymDays[1]);
+                    returnValue.put("Wednesday", gymDays[2]);
+                    returnValue.put("Thursday", gymDays[3]);
+                    returnValue.put("Friday", gymDays[0]);
+                    returnValue.put("Saturday", gymDays[1]);
+                    returnValue.put("Sunday", gymDays[2]);
+
+                    break;
+                default:
+                    System.out.println("A problem has occured with calculating the workout. Please re-enter your number of working Days per week.");
+            }
+
+        return returnValue;
     }
 }

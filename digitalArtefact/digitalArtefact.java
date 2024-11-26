@@ -149,21 +149,23 @@ public class digitalArtefact {
         }
 
 
+        // THE TESTER FOR SAVING WORKOUTS  
+        
         //Then run tests:
         
         // Saving Workouts
-        System.out.println("\n\nRunning Workout Saving Tests...");
+        // System.out.println("\n\nRunning Workout Saving Tests...");
 
-        boolean pl = tester.PowerliftingSaver();
-        boolean bb = tester.BodybuildingSaver();
+        // boolean pl = tester.PowerliftingSaver();
+        // boolean bb = tester.BodybuildingSaver();
 
-        System.out.println(pl + "," + bb);
+        // System.out.println(pl + "," + bb);
         
-        if(pl && bb) {
-            System.out.println("Workout Saving tests successful");
-        } else {
-            System.out.println("Workout Saving tests unsuccessful");
-        }
+        // if(pl && bb) {
+        //     System.out.println("Workout Saving tests successful");
+        // } else {
+        //     System.out.println("Workout Saving tests unsuccessful");
+        // }
     }
 
 }

@@ -23,9 +23,13 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
     public Powerlifting(int numDayForSplit, int numRestDays, int idealLengthInMins, String workoutName, boolean alreadyExists) { //, float mS, float mB, float mD, float caj) {
         super(numDayForSplit, numRestDays, idealLengthInMins, workoutName);
         
-        this.promptPowerliftingConstructor(alreadyExists);
+        this.promptLocalConstructor(alreadyExists);
+
+        this.WorkoutInstance();
     }
-    public void promptPowerliftingConstructor(boolean alreadyExists) {
+
+    @Override
+    public void promptLocalConstructor(boolean alreadyExists) {
         Scanner sc = new Scanner(System.in);
         if (!alreadyExists) {
             this.maxSquat = Validator.validateDouble(sc, "\nWhat is your Max Squat?\n");
@@ -43,6 +47,8 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
         }
         //Print a Disclaimer
         System.out.println("\n Important disclaimer: This is to be used as a guide to your workout, rather than a concrete bible workout.\n");
+
+        //Enter the Workout Running instance
     }
 
     //Adding ----s to separate termimal lines, makes it prettier/more readable
@@ -76,4 +82,8 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
     }
 
 
+    @Override
+    public void perWorkoutFunc(Scanner sc) {
+        System.out.println("THIS IS THE POWERLIFTING CLASS");
+    }
 }
