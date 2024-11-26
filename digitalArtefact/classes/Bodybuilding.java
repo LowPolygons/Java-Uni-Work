@@ -89,7 +89,7 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
         System.out.println("3. Cutting and Bulking Advice");
         System.out.println("4. What Exercises Per Muscle?");
         System.out.println("5. Delete Workout");
-        System.out.println("6. Skip this section.");
+        System.out.println("6. Skip this choice section.");
 
         System.out.println("\nPlease choose 1-5");
         int choice = Validator.intInRange(sc, 1, 6);
@@ -112,8 +112,11 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
                 break;
             case 3:
                 //Advice on cutting and bulking with reference to calorific intake and protein
+                this.CuttingBulking();
                 break;
             case 4:
+                //Muscle groups
+                this.MuscleGroupExercises();
                 break;
             case 5:
                 break;
@@ -124,9 +127,21 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
 
     }
 
+    public void MuscleGroupExercises() {
+        System.out.println("\n------------------------------------\n");
+        System.out.println("There are some important terms to consider before continuing: ");
+        System.out.println("\nRPE: Rate of Perceived Exertion. This is a scale from 1-10 on how difficult a given repetition is. For example, a rep which you can only do once and was close to failing would be an RPE 10.");
+        System.out.println("Long-Lengthened Partials: Repetitions which do not extend the full range of motion, instead sticking to the region which puts the muscle in the most stretch position.");
+        System.out.println("MYO Repetitions: These are sets of an exercise where you take lighter weights and shorter rest periods for a more time effective training schedule.");
+        System.out.println("Progressive Overload: This is the concept off, every week, increasing the difficulty of your workout, wether that is increasing the weight or adding more repetitions to a set.");
+
+
+    }
+
     public void CuttingBulking() {
-        System.out.println("\n When working out, you go through cutting and bulking phases.");
-        System.out.println("\n Bulking: This is your period when you are putting on size and muscle, and you fuel this by consuming more calories than your maintenance calories.");
+        System.out.println("\n------------------------------------\n");
+        System.out.println("\nWhen working out, you go through cutting and bulking phases.");
+        System.out.println("\nBulking: This is your period when you are putting on size and muscle, and you fuel this by consuming more calories than your maintenance calories.");
         System.out.println("Cutting: This is your phase where you up your protein intake, consume less calories than your maintenance to drop body weight, and let your muscle fibers become more visible as you get more 'shredded.'");
 
         //Calculate calories stuff.
@@ -134,21 +149,42 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
         double[] cuttingCalories = {this.dailyCalories * 0.775, this.dailyCalories*0.925};
 
         System.out.println("\nFor your bodyweight and maintenance calories, on a bulking phase we recommend upping your calorie consumption to somewhere in the range of " + (int)bulkingCalories[0] + "Kcal to " + (int)bulkingCalories[1] + "Kcal.");
-        System.out.printlnI("For cutting, we recommend dropping to between" + (int)cuttingCalories[0] + "Kcal to " + (int)cuttingCalories[1] + "Kcal.");
-
+        System.out.println("For cutting, we recommend dropping to between " + (int)cuttingCalories[0] + "Kcal to " + (int)cuttingCalories[1] + "Kcal.");
         //Protein things
 
-        const double kgToLb = 2.20462;
+        double kgToLb = 2.20462;
 
-        double bulkingProteinLambda = 0.7
-        double cuttingProteinLambda = 1
+        double bulkingProteinLambda = 0.7;
+        double cuttingProteinLambda = 1;
 
         double bulkingProtein = this.bodyWeight * kgToLb * bulkingProteinLambda;
         double cuttingProtein = this.bodyWeight * kgToLb * cuttingProteinLambda;
 
         System.out.println("\nOn a bulking phase, to maximise muscle growth we recommend taking your protein intake to approximately "+(int)bulkingProtein + " grams of protein per day.");
         System.out.println("On a cutting phase, we recommend taking your protein intake to approximately " + (int)cuttingProtein + " grams of protein per day.");
+
+        double proteinPercentageDiff =  100 * (this.dailyProtein) / (this.bodyWeight * kgToLb) ;
+        if ( Math.abs(100 - proteinPercentageDiff) > 20 ) {
+            //If it is out by more than 20%
+            if (100 - proteinPercentageDiff > 0)
+                System.out.println("\nRight now, your protein intake is too small, and this will be costing you potential muscle growth. Try eat more high protein foods such as Chicken Breast or Mince to fill in this gap.");
+            else
+                System.out.println("\nYour daily protein intake is too high right now. Please try and decrease your intake as right now it is excessive.");
+        }
         
+
+        System.out.println("\nA good bulking phase for you might look something like this:");
+        System.out.println("- Consume "+ (int)bulkingCalories[0] + "Kcal to " + (int)bulkingCalories[1] + "Kcal a day until you have put on between 5-15% of your starting bodyweight, around "+ (int)this.bodyWeight*1.1 + "Kg");
+        System.out.println("- Try not to exceed 15-20% body fat percentage. Throughout the duration of the bulk. Your diet therefore will determine how long this bulk lasts.");
+        if (this.bodyFatPercentage > 15) {
+            System.out.println("At your current body fat percentage, consider cutting first.");
+        }
+
+        System.out.println("\nA good cutting phase for you might look like this:");
+        System.out.println("- Drop your calorie intake to " + (int)cuttingCalories[0] + "Kcal to " + (int)cuttingCalories[1] + "Kcal throughout the cutting phase until you have decreased your body fat percentage into the 8-10% range.");
+        System.out.println("- To get an extra shredded tone on your physique, towards the end of the cut try and reduce your water intake. Be careful with this though, and restrict this to a handful of days at most.");
+        
+        System.out.println("\n------------------------------------\n");
     }
 
     //Bit of a mess but it functions nicely

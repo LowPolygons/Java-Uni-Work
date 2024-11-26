@@ -56,7 +56,7 @@ public class Profile {
 
             int numDays = validator.intInRange(sc, 1, 7);
             int numRests = 7 - numDays;
-            int workoutLength = validator.validateInt(sc, "\n How long would you like each workout to be? (in minutes)\n");
+            int workoutLength = validator.validateInt(sc, "\nHow long would you like each workout to be? (in minutes)\n");
 
             //Determine workout type, create workout
             System.out.println("\nPlease choose a workout type (1-3): ");
