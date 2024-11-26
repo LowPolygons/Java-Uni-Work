@@ -13,7 +13,10 @@ package classes;
 import java.util.HashMap;
 import java.util.ArrayList;
 
-public abstract class WorkoutPlan {
+import interfaces.WorkoutBTS;
+
+//Abstract so that it doesn't have to be instantiated immediately in the Profile class
+public abstract class WorkoutPlan implements WorkoutBTS {
     //key information across all workouts
     private int daySplit;
     private int restDays;
@@ -58,8 +61,4 @@ public abstract class WorkoutPlan {
     public String getNameForFile() {
       return this.workoutName;
     }
-
-    //Override methods 
-    public abstract ArrayList<String> linesToWrite();
-    public abstract void displayInformation();
 }

@@ -7,7 +7,9 @@ import java.io.File;  // Import the File class
 import classes.Validator;
 import classes.FileManager;
 
-public class Bodybuilding extends WorkoutPlan {
+import interfaces.WorkoutBTS;
+
+public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
     double bodyFatPercentage;
     double bodyWeight;
     double dailyCalories;
@@ -32,7 +34,6 @@ public class Bodybuilding extends WorkoutPlan {
             this.bodyFatPercentage = Double.parseDouble(args.get("bodyFatPercentage"));
             this.bodyWeight = Double.parseDouble(args.get("bodyWeight"));
             this.dailyCalories = Double.parseDouble(args.get("dailyCalories"));
-            this.dailyProtein = Double.parseDouble(args.get("dailyProtein"));
             //Load them in from the file
         }
         //Print a Disclaimer

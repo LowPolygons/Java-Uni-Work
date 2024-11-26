@@ -9,9 +9,10 @@ import java.io.File;  // Import the File class
 import classes.Validator;
 import classes.FileManager;
 
+import interfaces.WorkoutBTS;
 
 //All the nitty gritty of the workouts is done. Next step on this is just functionality
-public class Powerlifting extends WorkoutPlan {
+public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
 
     private double maxSquat;
     private double maxBench;
@@ -46,6 +47,7 @@ public class Powerlifting extends WorkoutPlan {
 
     //Adding ----s to separate termimal lines, makes it prettier/more readable
 
+    //Override the interface methods
     @Override
     public void displayInformation() {
         System.out.println("--------------------------------");
