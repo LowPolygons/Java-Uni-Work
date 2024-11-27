@@ -1,8 +1,8 @@
-workoutStyle => Bodybuilding;
+workoutStyle => Powerlifting;
+maxSquat => 90.0;
+maxBench => 100.0;
+maxDeadlift => 120.0;
+maxCAJ => 0.0;
 numDays => 6;
 numRestDays => 1;
 workoutLength => 60;
-bodyFatPercentage => 17.0;
-bodyWeight => 97.0;
-dailyCalories => 2800.0;
-dailyProtein => 40.0;

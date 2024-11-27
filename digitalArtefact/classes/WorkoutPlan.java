@@ -74,7 +74,7 @@ public abstract class WorkoutPlan implements WorkoutBTS {
       do {
         this.perWorkoutFunc(sc);
 
-        String result = Validator.yesOrNo(sc, "Do you want to continue?");
+        String result = Validator.yesOrNo(sc, "\n\nDo you want to continue?");
 
         if (result.toLowerCase().equals("no"))
           breakOut = true;

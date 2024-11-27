@@ -71,9 +71,6 @@ public class Profile {
                     
                     boolean success = FileManager.saveWorkout(this.workout, this.workout.linesToWrite() );
 
-                    if (success) {         
-                        this.workout.displayInformation();
-                    }
                     break;
                 }
                 case 2: {
@@ -203,6 +200,11 @@ public class Profile {
 
         String fileName = (this.person.getFirstName()+this.person.getSurname()+this.company.getCompanyName()).toLowerCase();
         File currentProfile = new File("profiles/"+fileName+".profile");
+
+        File currentWorkout = new File("workouts/"+ (this.person.getFirstName()+this.person.getSurname()).toLowerCase()+".workout");
+        
+        if (currentWorkout.exists())
+            currentWorkout.delete();
 
         currentProfile.delete();
 

@@ -42,7 +42,7 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
             //Load them in from the file
         }
         //Print a Disclaimer
-        System.out.println("\n Important disclaimer: This is to be used as a guide to your workout, rather than a concrete bible workout.\n");
+        System.out.println("\nImportant disclaimer: This is to be used as a guide to your workout, rather than a concrete bible workout.\n");
 
         //Brief intro
         System.out.println("\n-------------------------------\n");
@@ -88,11 +88,10 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
         System.out.println("2. Display Weekly Split");
         System.out.println("3. Cutting and Bulking Advice");
         System.out.println("4. What Exercises Per Muscle?");
-        System.out.println("5. Delete Workout");
-        System.out.println("6. Skip this choice section.");
+        System.out.println("5. Skip this choice section.");
 
         System.out.println("\nPlease choose 1-5");
-        int choice = Validator.intInRange(sc, 1, 6);
+        int choice = Validator.intInRange(sc, 1, 5);
 
         switch (choice) {
             case 1:
@@ -116,9 +115,7 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
                 break;
             case 4:
                 //Muscle groups
-                this.MuscleGroupExercises();
-                break;
-            case 5:
+                this.MuscleGroupExercises(sc);
                 break;
             case 6:
                 //Do nothing
@@ -127,15 +124,69 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
 
     }
 
-    public void MuscleGroupExercises() {
+    public void MuscleGroupExercises(Scanner sc) {
         System.out.println("\n------------------------------------\n");
         System.out.println("There are some important terms to consider before continuing: ");
-        System.out.println("\nRPE: Rate of Perceived Exertion. This is a scale from 1-10 on how difficult a given repetition is. For example, a rep which you can only do once and was close to failing would be an RPE 10.");
-        System.out.println("Long-Lengthened Partials: Repetitions which do not extend the full range of motion, instead sticking to the region which puts the muscle in the most stretch position.");
-        System.out.println("MYO Repetitions: These are sets of an exercise where you take lighter weights and shorter rest periods for a more time effective training schedule.");
-        System.out.println("Progressive Overload: This is the concept off, every week, increasing the difficulty of your workout, wether that is increasing the weight or adding more repetitions to a set.");
+        System.out.println("- RPE: Rate of Perceived Exertion. This is a scale from 1-10 on how difficult a given repetition is. For example, a rep which you can only do once and was close to failing would be an RPE 10.");
+        System.out.println("- Long-Lengthened Partials: Repetitions which do not extend the full range of motion, instead sticking to the region which puts the muscle in the most stretch position.");
+        System.out.println("- MYO Repetitions: These are sets of an exercise where you take lighter weights and shorter rest periods for a more time effective training schedule.");
+        System.out.println("- Progressive Overload: This is the concept off, every week, increasing the difficulty of your workout, wether that is increasing the weight or adding more repetitions to a set.");
+        System.out.println("- Drop set: A single working set where you decrease the weight once you cant continue with the current weight.");
 
+        System.out.println("\nHere are some important tips to consider:");
+        System.out.println("- Training to Failure: finishing a set in such a manner that you are incapable of completing another repetition at the current weight.");
+        System.out.println("- Eccentric Control: Throughout any single exercise, ensure you are in total control of the weight during the 'negative' of the movement as well as the positive. This ensures maximum muscle growth potential.");
+        System.out.println("- Working out a muscle group betwwen 5-8 sets per session seems to give the most effective muscle growth stimulus.");
 
+        System.out.println("Which gym-day would you like tips on: ");
+        System.out.println("1. Push");
+        System.out.println("2. Pull");
+        System.out.println("3. Legs");
+
+        int choice = Validator.intInRange(sc, 1, 3);
+
+        switch (choice) {
+            case 1:
+                System.out.println("\n\nA good Push workout will put emphasis on your Pecs, Shoulders/delts and Triceps.");
+                System.out.println("\nExample Pec Exercises");
+                System.out.println("- Incline Bench Press / Incline Dumbbell Press: 2-3 warm up sets, increasing the weight each time, then 3 working sets, at a weight of RPE 7-8 for 10-12 reps. Consider long-lengthened partials.");
+                System.out.println("- Cable Pec Flys/Machine Pec Flys: 1-2 Warm up sets, increasing the weight each time. 3 working sets, 10 reps, RPE 7-8 and the final set considering working till failure followed by a dropset.");
+                
+                System.out.println("\nExample Shoulder Exercises:");
+                System.out.println("- Any Pressing motion, such as Incline Bench Press or Seated Overhead Press: 2-3 warm up sets, 3-4 working sets, RPE 7-8, 8-10 reps.");
+                System.out.println("- Cable/Dumbbell lateral raises: 1-2 warm up sets, 4-5 working sets, RPE 7-8 and 10-12 reps. Focus especially on eccentric control.");
+                System.out.println("- Reverse Pec Flys: 1-2 warm up sets, 3 working sets, RPE 7-8, 12-15 Reps.");
+        
+                System.out.println("\nExample Triceps Exercises:");
+                System.out.println("- Overhead cable extensions: 2-3 warm up sets, ensuring total eccentric control and a deep stretch. 3-5 working sets, RPE 7-8, 10-15 reps.");
+                System.out.println("- Skull Crushers/Cable flat bar push downs: 1-2 warm up sets. 3-4 working sets, RPE 7-8, 10-15 reps. Consider MYO Reps here, and go to failure on at least the final set.");
+
+                break;
+            case 2:
+                System.out.println("\n\nA good Pull workout will put emphasis on your Back and Biceps.");
+                System.out.println("\nExample Back Exercises:");
+                System.out.println("- Strict Pull Ups: 2 warm up sets with appropriate weight assistance. 3-4 working sets, focusing on the deep stretch at the bottom and pausing before the next rep. RPE 7-8, 6-10 reps, taking the last set to failure.");
+                System.out.println("- Any Pulldown or Row motion: 2 warm up sets. 3-4 working sets, RPE 7-8. Consider Long-lengthened partial reps and MYO Reps.");
+                System.out.println("- Stiff-Armed Cable Pulldowns: 1 warm up set, 3-4 working sets, RPE 7-8. Consider long-lengthened partials once a full rep is not achievable.");
+
+                System.out.println("\nExample Bicep Exercises:");
+                System.out.println("- Dumbell curls or cable curls (eg Bayesian Curls): 2 warm up sets, 3-4 working sets, RPE 6-8. Pause in the most stretched position. 8-12 Reps");
+                System.out.println("- Hammer Curls: 1 warm up set, 2-3 working sets, RPE 6-8. Consider long-lengthened partials. 6-10 Reps");
+            case 3:  
+                System.out.println("\n\nA good Pull workout will put target your Quads, Hamstrings, Abductors and Calves");
+                System.out.println("\nExample Calves Exercises:");
+                System.out.println("- Calf Raises: 1-2 warm up sets, 3-5 working sets, RPE 8-9, Reps 5-10. Consider Long-lengthened partials and going to failure.");
+
+                System.out.println("\nExample Hamstring exercises:");
+                System.out.println("- Romanian Deadlifts (RDLS): 2-3 warm up sets, 3-4 working sets, RPE 7-8, 10-12 Reps.");
+                System.out.println("- Leg Curls: 1-2 warm up sets. 3-5 working sets, 10-15 Reps, RPE 7-8. Consider pausing at the stretched position, and try one leg at a time.");
+
+                System.out.println("\nExample Quads Exercises:");
+                System.out.println("- A form of Squat or Leg Press: 2-4 warm up sets, 3-5 working sets, RPE 7-9, 5-15 reps. Focus on a deep stretch and full range of motion. Consider going to failure on Leg press exercises or machine exercises.");
+                System.out.println("- Leg Extensions: 1-2 warm up sets, 3-5 working sets, RPE 6-8, 10-15 reps. Focus on eccentric control and a deep stretch. Try going to failure (this will hurt!)");
+                System.out.println("- Lunges: 1-2 warm up sets, 2-3 working sets, 10 reps per leg, RPE 6-7. Avoid training to total failure unless you are using a Smith machine and can bail easily.");
+                System.out.println("Bonus: Immediately after your last quad exercise, try a single set of bodyweight squats in long-lengthened partials till total failure.");
+        }
     }
 
     public void CuttingBulking() {
@@ -203,7 +254,7 @@ public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
         returnValue.put("Sunday", "Rest");
 
         if (numDays < gymDays.length)
-            System.out.println("\n The number of days you have chosen to work out will not yeild you results as effective as they could be. \n");
+            System.out.println("\nThe number of days you have chosen to work out will not yeild you results as effective as they could be. \n");
 
             switch (numDays) {
                 case 1:

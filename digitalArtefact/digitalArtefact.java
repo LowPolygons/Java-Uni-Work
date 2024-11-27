@@ -112,11 +112,10 @@ public class digitalArtefact {
         //Prompting User to Fully finish their profile
         System.out.println("\nIf this a new profile, we recommend Updating your Job description. If you are interested in working out, set up a Workout Plan for yourself!");
 
-        //Display the user options
-        currProfile.displayProfileOptions();
         String continueProgram;
 
         do {
+            currProfile.displayProfileOptions();
             currProfile.promptUserSelection();
 
             int menuChoice = validator.intInRange(sc, 1, currProfile.getNumMethods()+1); //Saving profile is a DA function, so must be considered seperately
