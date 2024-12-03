@@ -1,9 +1,0 @@
-Testing Practices for DA:
-
-- Test blocks of code as they are being written as opposed to an exclusive large test at the end
-
-- Log more than is necessary to give transparent feedback on where things could potentially be going wrong
-
-- When designing larger pieces of code in a system, ensure that it is structured in a manner that it can be ran at multiple points during development without causing errors in the larger system. This makes testing easier
-
-- In applicable cases, automate tests  

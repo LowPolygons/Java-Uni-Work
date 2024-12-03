@@ -1,4 +1,4 @@
-package interfaces;
+package interfaces.Workouts;
 
 import java.util.ArrayList;
 

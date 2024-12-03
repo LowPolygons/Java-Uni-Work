@@ -9,7 +9,7 @@ import java.io.File;  // Import the File class
 import classes.Misc.Validator;
 import classes.Misc.FileManager;
 
-import interfaces.WorkoutBTS;
+import interfaces.Workouts.WorkoutBTS;
 
 //All the nitty gritty of the workouts is done. Next step on this is just functionality
 public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
@@ -96,7 +96,7 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
         System.out.println("6. Skip this section");
 
         System.out.println("\nPlease choose 1-5");
-        int choice = Validator.intInRange(sc, 1, 5);
+        int choice = Validator.intInRange(sc, 1, 6);
 
         switch (choice) {
             case 1:

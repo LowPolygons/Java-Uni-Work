@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import classes.Misc.Validator;
-import interfaces.WorkoutBTS;
+import interfaces.Workouts.WorkoutBTS;
 
 //Abstract so that it doesn't have to be instantiated immediately in the Profile class
 public abstract class WorkoutPlan implements WorkoutBTS {

@@ -10,7 +10,7 @@ import java.io.File;  // Import the File class
 import classes.Misc.Validator;
 import classes.Misc.FileManager;
 
-import interfaces.WorkoutBTS;
+import interfaces.Workouts.WorkoutBTS;
 
 public class Bodybuilding extends WorkoutPlan implements WorkoutBTS {
     double bodyFatPercentage;
