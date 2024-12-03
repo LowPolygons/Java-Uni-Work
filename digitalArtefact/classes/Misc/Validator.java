@@ -1,7 +1,9 @@
 
-package classes;
+package classes.Misc;
 
 import java.util.Scanner;
+
+//Represents a mitigation of Testing needed to be done regarding user inputs
 
 //Doesn't need a constructor so may as well be abstract
 public abstract class Validator {

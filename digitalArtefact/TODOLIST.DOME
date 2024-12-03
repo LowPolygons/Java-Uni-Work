@@ -16,14 +16,4 @@
 		-For clarification, additional objects should be available, but you cant modify how the random works 
 
 
-- Give functionality to the Powerlifting and Bodybuilding categories
-	-What should each of them do?
-		-Bodybuilding will focus on a week to week basis and will be about increasing strength per week which will bring along size naturally (deep stretch stuff)
-		-All exercises should be in reference to RPE 1-10.
-		-Ensure to include the definitions for terms at the top such as MYOREPS, Long Lengthened Partials, etc
-    -Give cutting and bulking phases in reference to their calories; if their protein intake is not correct based on things like (0.8g per lb of BW) give feedback on that
-	
-		-Powerlifting should be more oriented specifically on the SBDC exercises, and refer to other ones as 'support groups'
-		-Reference diet but without figures so it can be a piece of advice rather than something that updates
-		-Talk about how often to got for PRs. On days when going for a PR reference the numerical figures, otherwise talk about RPE or top set reps (eg top set 2 reps)
 

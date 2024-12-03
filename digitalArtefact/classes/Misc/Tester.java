@@ -1,7 +1,7 @@
-package classes;
+package classes.Misc;
 
 import java.util.*;
-import classes.*;
+import classes.Workouts.*;
 
 public abstract class Tester {
 

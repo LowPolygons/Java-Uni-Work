@@ -1,4 +1,5 @@
-package classes;
+package classes.Workouts;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -6,8 +7,8 @@ import java.util.HashMap;
 import java.io.File;  // Import the File class
 
 //Dont have to instantiate these as they are abstract classes
-import classes.Validator;
-import classes.FileManager;
+import classes.Misc.Validator;
+import classes.Misc.FileManager;
 
 import interfaces.WorkoutBTS;
 

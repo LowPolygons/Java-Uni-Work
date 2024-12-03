@@ -8,12 +8,13 @@
 //- the variables will then be oriented around the given type
 //- How to store these though? Perhaps workout plans are separately stored
 
-package classes;
+package classes.Workouts;
 
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import classes.Misc.Validator;
 import interfaces.WorkoutBTS;
 
 //Abstract so that it doesn't have to be instantiated immediately in the Profile class

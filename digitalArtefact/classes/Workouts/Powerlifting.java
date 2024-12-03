@@ -1,13 +1,13 @@
 
-package classes;
+package classes.Workouts;
 
 import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Scanner;
-
 import java.io.File;  // Import the File class
-import classes.Validator;
-import classes.FileManager;
+
+import classes.Misc.Validator;
+import classes.Misc.FileManager;
 
 import interfaces.WorkoutBTS;
 
@@ -133,10 +133,11 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
                 this.prPlan(sc, this.maxSquat);
                 break;
             case 2:
-                 
+                this.advice("squat");
                 break;
             case 3:
-                this.maxSquat = Validator.validateDouble(sc, "What is your new PR in Kilograms?");
+                this.maxSquat = Validator.validateDouble(sc, "\nWhat is your new PR in Kilograms?");
+                System.out.println("\nNew PR Updated\n");
                 break;
         }
     }
@@ -154,10 +155,11 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
                 this.prPlan(sc, this.maxBench);
                 break;
             case 2:
-                 
+                this.advice("bench");
                 break;
             case 3:
-                this.maxBench = Validator.validateDouble(sc, "What is your new PR in Kilograms?");
+                this.maxBench = Validator.validateDouble(sc, "\nWhat is your new PR in Kilograms?");
+                System.out.println("\nNew PR Updated\n");
                 break;
         }
     }
@@ -175,10 +177,11 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
                 this.prPlan(sc, this.maxDeadlift);
                 break;
             case 2:
-                
+            this.advice("deadlift");
                 break;
             case 3:
-                this.maxDeadlift = Validator.validateDouble(sc, "What is your new PR in Kilograms?");
+                this.maxDeadlift = Validator.validateDouble(sc, "\nWhat is your new PR in Kilograms?");
+                System.out.println("\nNew PR Updated\n");
                 break;
         }
     }
@@ -196,11 +199,52 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
                 this.prPlan(sc, this.maxCAJ);
                 break;
             case 2:
-                
+                this.advice("caj");
                 break;
             case 3:
-                this.maxCAJ = Validator.validateDouble(sc, "What is your new PR in Kilograms?");
+                this.maxCAJ = Validator.validateDouble(sc, "\nWhat is your new PR in Kilograms?");
+                System.out.println("\nNew PR Updated\n");
                 break;
+        }
+    }
+
+    public void advice(String exercise) {
+        System.out.println("\n-----------------------------\n"); 
+        System.out.println("There are some important things to remember when working up to a new PR:"); 
+        System.out.println("\n- Proper Diet\n"); 
+        System.out.println("   A proper diet which consists of appropriate amounts of all your macros is imperative to strength and size training, particularly your protein.");
+        System.out.println("   Avoid going for PRs on a cut, as this is a time for leanness and not strength. PRing is best suited to a bulk.");
+        System.out.println("   Try supplements as well, considering Protein power as well as Creatine Power."); 
+        System.out.println("\n- Deload weeks and proper build ups\n");
+        System.out.println("   After attempting any PRs or particularly heavy lifts, or alternatively if you are fatigued, try a Deload week.");
+        System.out.println("   On a deload week, never go for weights in your program about 60% of your max weight. Focus on form and recovery.");
+        System.out.println("   This will help recover from accumulated fatigue.");
+        System.out.println("   Then, slowly build back up to your current PR and then your new PR over multiple weeks. Never PR more than once a month. If you are more advanced, never more than once per 8-12 weeks.\n");
+    
+        System.out.println("\n- Accessory Exercises\n"); 
+        switch(exercise) {
+            case "squat":
+              System.out.println("   Any exercises which would support your squat are crucial. Squats target your quads and glutes primarily, so emphasis on these is imperative."); 
+              System.out.println("   For your quads, ensure to include other squatting or pressing motions such as Leg Press or hack squat, as these will transfer over extremely well."); 
+              System.out.println("   For your glutes, exercises lke hipthrusts will put good emphasis on your glutes. You can often hipthrust a lot more weight than expected, so push yourself.");
+              break;
+            case "bench":
+              System.out.println("   Benchpressing targets your chest and triceps primarily, so working on these can be extremely beneficial"); 
+              System.out.println("   For your chest, try an alternative pressing motion like Incline Bench or Dumbbell Bench which you don't care as much about PRing on. Focus on form and repetitions."); 
+              System.out.println("   For your triceps, try pushdowns or extensions, focusing on smaller repetitions and more weight. Research suggests even one heavy set per week can increase strength.");
+              break;
+            case "deadlift":
+              System.out.println("   Deadlifting puts tension on your back, tests grip strength, as well as your hamstrings and glutes.");
+              System.out.println("   For grip strength, either attempt deadhangs or invest in lifting straps.");
+              System.out.println("   For your back, try exercises which safely strengthen your lower back and consider a lifting belt if you are feeling painful tension.");
+              System.out.println("   For your hamstrings and glutes, try Romanian Deadlifts, Stiff Legged deadlifts and hipthrusts, focusing on lower reps and more weight you can safely handle.");
+            case "caj":
+              System.out.println("   Clean-And-Jerk puts strain on your legs, core and shoulders. A key component is balance as well.");
+              System.out.println("   For your legs, consider intense movement exercises like high jumps, lunges and any pressing motion.");
+              System.out.println("   For your core, try lots of push ups and sit ups for high repetitions.");
+              System.out.println("   For your shoulders, try secure pressing motions like seated overhead press, focusing on weight and less on reps.");
+              System.out.println("   It is imperitive to have form right on this exercises, so get used to it with a weight on Clean-And-Jerk you can easily control. Try balancing movements to get used to instability.");
+            //No default case needed
         }
     }
 

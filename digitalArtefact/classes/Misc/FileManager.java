@@ -1,4 +1,4 @@
-package classes;
+package classes.Misc;
 
 //w3schools gave this
 import java.io.File;  // Import the File class
@@ -9,6 +9,9 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.ArrayList;
+
+import classes.Workouts.*;
+import classes.Profile;
 
 public abstract class FileManager {
     

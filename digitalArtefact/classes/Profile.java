@@ -9,8 +9,10 @@ package classes;
 import java.io.File;
 import java.util.Scanner;
 import java.util.ArrayList;
-import classes.Validator;
-import classes.FileManager;
+
+import classes.Misc.Validator;
+import classes.Misc.FileManager;
+import classes.Workouts.*;
 
 public class Profile {
 

@@ -4,7 +4,10 @@
 //        : 'java digitalArtefact' - Runs all code, but this is assuming all the files are in the same repo
 
 
+//Need all
+import classes.Misc.*;
 import classes.*;
+
 import java.util.*;
 
 //w3schools gave this
