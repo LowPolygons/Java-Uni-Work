@@ -5,4 +5,4 @@ maxDeadlift => 120.0;
 maxCAJ => 0.0;
 numDays => 6;
 numRestDays => 1;
-workoutLength => 70;
+workoutLength => 60;

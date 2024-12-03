@@ -95,7 +95,7 @@ public class Powerlifting extends WorkoutPlan implements WorkoutBTS {
         System.out.println("5. Max Clean-And-Jerk Work");
         System.out.println("6. Skip this section");
 
-        System.out.println("\nPlease choose 1-5");
+        System.out.println("\nPlease choose 1-6");
         int choice = Validator.intInRange(sc, 1, 6);
 
         switch (choice) {

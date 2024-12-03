@@ -3,6 +3,8 @@ package classes;
 
 import java.util.*;
 
+import classes.Misc.AdminControls;
+
 public class Company {
 
     //Written to files
@@ -25,9 +27,12 @@ public class Company {
 
         String answer = sc.nextLine();
 
-        System.out.println("Updating Job Description..\n");
-        this.jobDescription = answer;
-
+        if (answer.equals("Enter_Admin_Session_"+companyName) ){
+            AdminControls session = new AdminControls();
+        } else {
+            System.out.println("Updating Job Description..\n");
+            this.jobDescription = answer;
+        }
         return success;
     }
 
