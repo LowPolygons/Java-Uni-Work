@@ -48,7 +48,7 @@ public abstract class Validator {
         while (!valid) {
             if (sc.hasNextDouble()) {
                 valid = true;
-                output = sc.nextInt();
+                output = sc.nextDouble();
             } else {
                 System.out.println("Invalid input. Try again: ");
                 sc.next(); //Skip over the given input

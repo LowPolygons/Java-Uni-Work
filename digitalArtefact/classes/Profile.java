@@ -61,7 +61,7 @@ public class Profile {
             int workoutLength = validator.validateInt(sc, "\nHow long would you like each workout to be? (in minutes)\n");
 
             //Determine workout type, create workout
-            System.out.println("\nPlease choose a workout type (1-3): ");
+            System.out.println("\nPlease choose a workout type (1-2): ");
             System.out.println("1. Powerlifting");
             System.out.println("2. Bodybuilding");
 
