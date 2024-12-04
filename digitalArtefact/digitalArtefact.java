@@ -20,6 +20,9 @@ import java.io.FileNotFoundException;
 //Dictionary for reading profile files
 import java.util.HashMap;
 
+//For testing
+import testers.Tester;
+
 public class digitalArtefact {
     //Static means the method belongs to the class and not a specific instance of the class
     //That is why when you use this.[variablename] it will not work if the method is static as it is not a specific instance
@@ -106,6 +109,9 @@ public class digitalArtefact {
     
     //The main program flow
     public static void main (String[] args) {
+        //Run tester first by simply instanciating the main tester
+        Tester testClass = new Tester();
+
         header();
 
         Scanner sc = new Scanner(System.in);

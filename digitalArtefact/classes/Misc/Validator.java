@@ -32,7 +32,11 @@ public abstract class Validator {
                 output = sc.nextInt();
             } else {
                 System.out.println("Invalid input. Try again: ");
-                sc.next(); //Skip over the given input
+                if (sc.hasNext()) {
+                    sc.next(); //Skip over the given input
+                } else {
+                    return -1;
+                }
             }
         }
         //By pressing enter on the final input that is valid, it doesn't consume the new line created
@@ -54,12 +58,17 @@ public abstract class Validator {
                 output = sc.nextDouble();
             } else {
                 System.out.println("Invalid input. Try again: ");
-                sc.next(); //Skip over the given input
+                if (sc.hasNext()) {
+                    sc.next(); //Skip over the given input
+                } else {
+                    return -1.0;
+                }
             }
         }
         //By pressing enter on the final input that is valid, it doesn't consume the new line created
-        if(sc.hasNextLine())
-          sc.nextLine();
+        if (sc.hasNext()) {
+            sc.nextLine(); //Skip over the given input
+        }
 
         return output;
     }
@@ -80,7 +89,13 @@ public abstract class Validator {
                 System.out.println("Invalid input. Try again: ");
             }
             
-            sc.nextLine(); //Skip over the given input
+            if (sc.hasNext()) {
+                sc.nextLine(); //Skip over the given input
+            } else {
+                if (!valid) {
+                    return -1;
+                }
+            }
         }
 
         return output;

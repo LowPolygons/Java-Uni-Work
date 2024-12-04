@@ -11,21 +11,23 @@ import java.util.ArrayList;
 
 public class Logger {
     
-    private ArrayList<String> logLines;
+    private ArrayList<String> logLines = new ArrayList<>();
 
     public Logger() {
         this.validateLogFile();
     }
 
     //Self explanatory
-    public void writeToLog(ArrayList<String> inputs) {
+    public void writeToLog() {
         File logFile = new File("log.txt");
         try {
             FileWriter writer = new FileWriter("log.txt");
 
-            for (String curr : inputs) {
-                writer.write(curr);
+            for (String curr : this.logLines) {
+                writer.write(curr+"\n");
             }
+
+            writer.close();
         } catch (IOException err) {
             System.out.println("There was an issue writing to the log file.");
         }
@@ -44,10 +46,18 @@ public class Logger {
 
             FileWriter writer = new FileWriter("log.txt");
 
-            writer.write("[INFO] Initialised Log File");
+            writer.write("Initialised Log File - This message will disappear upon testing output");     
 
+            writer.close();
         } catch (IOException err) {
             System.out.println("There was an issue writing to the log file.");
+        }
+    }
+
+    //This object is passed around and only every instantiated once so you can have all seperate classes all add to one array
+    public void addToLogLines(ArrayList<String> lines) {
+        for (String curr : lines) {
+            this.logLines.add(curr);
         }
     }
 }
