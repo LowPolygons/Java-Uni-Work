@@ -35,6 +35,9 @@ public abstract class Validator {
                 sc.next(); //Skip over the given input
             }
         }
+        //By pressing enter on the final input that is valid, it doesn't consume the new line created
+        if(sc.hasNextLine())
+          sc.nextLine();
 
         return output;
     }
@@ -54,6 +57,9 @@ public abstract class Validator {
                 sc.next(); //Skip over the given input
             }
         }
+        //By pressing enter on the final input that is valid, it doesn't consume the new line created
+        if(sc.hasNextLine())
+          sc.nextLine();
 
         return output;
     }

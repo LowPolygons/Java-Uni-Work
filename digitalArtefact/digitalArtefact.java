@@ -7,6 +7,7 @@
 //Need all
 import classes.Misc.*;
 import classes.*;
+import testers.Tester;
 
 import java.util.*;
 
