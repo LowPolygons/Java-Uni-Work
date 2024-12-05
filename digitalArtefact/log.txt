@@ -15,3 +15,5 @@ Passed
 Passed
 5 out of 5 Passed
 
+The Profile Class, besides reliance on the FileManager and Validator class which are already tested, provides no opportunity for error.
+The Workout Class, besides reliance on the FileManager and Validator class which are already tested, provides no opportunity for error.

@@ -1,7 +1,7 @@
 0 - 19 : Basic User Input                                        -> Done
 20-39  : Selection                                               -> Done
 40-49  : Loops, Methods, Variables named appropriately           -> Done
-50-59  : Arrays, Testing, Consistent Indentation                 -> Done
+50-59  : Arrays, Testing, Consistent Indentation                 -> Done, Testing 
 60-74  : Object-Orientation, Extensive Comments                  -> OOP Done, Comments done where necessary to not cluster files
 75-85  : Inheritance, Advanced OO, Appropriate Package Structure -> Done
 86-100 : 1-3 additional features, Self-directed code management -> 1 Main additional feature (workouts), 1 smaller one (Admin Commands),
