@@ -41,6 +41,7 @@ public class T_Validator implements TesterBTS {
     public void runTest(ArrayList<String> inputs) {
         String allResults = String.join("\n", inputs);
 
+        //Janky, but i needed to recreate it every time as these validation functions were designed to accept a scanner rather than an input at a time
         Scanner sc = new Scanner(allResults);
             String yesOrNo = Validator.yesOrNo(sc, "Message as a result of Testing (IGNORE)");
         sc.close();
@@ -53,6 +54,7 @@ public class T_Validator implements TesterBTS {
         sc = new Scanner(allResults);
             String intInRange = Integer.toString(Validator.intInRange(sc, 101, 950));
         sc.close();
+
         //As they are hard coded, you know what the expected output should be, so you can hard code these as well
         //For the list of validators, this data set will always be sufficient
         boolean[] results = new boolean[4];
@@ -79,7 +81,9 @@ public class T_Validator implements TesterBTS {
     }
 
     @Override
-    public void feedbackTest(Logger logger) {
+    public Logger feedbackTest(Logger logger) {
         logger.addToLogLines(this.linesToWrite);
+
+        return logger;
     }
 }

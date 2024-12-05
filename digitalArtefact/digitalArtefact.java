@@ -36,6 +36,8 @@ public class digitalArtefact {
     static Validator validator;
     static Tester tester;
 
+    static boolean doTests = true;
+
     public static String profileExists(String firstName, String surname, String comp) {
         String fullName = (firstName+surname+comp).toLowerCase();
 
@@ -110,7 +112,10 @@ public class digitalArtefact {
     //The main program flow
     public static void main (String[] args) {
         //Run tester first by simply instanciating the main tester
-        Tester testClass = new Tester();
+        if(doTests) {
+            System.out.println("\n\n\nTesting is about to begin. You will need to do some inputting, but it counts to nothing towards the program itself.\n\n\n");
+            Tester testClass = new Tester();
+        }
 
         header();
 

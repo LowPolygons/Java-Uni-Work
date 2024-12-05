@@ -30,22 +30,23 @@ public abstract class Validator {
             if (sc.hasNextInt()) {
                 valid = true;
                 output = sc.nextInt();
+                sc.nextLine();
+                
             } else {
                 System.out.println("Invalid input. Try again: ");
+
                 if (sc.hasNext()) {
-                    sc.next(); //Skip over the given input
+                    sc.nextLine(); //Skip over the given input
                 } else {
                     return -1;
                 }
             }
         }
-        //By pressing enter on the final input that is valid, it doesn't consume the new line created
-        if(sc.hasNextLine())
-          sc.nextLine();
 
         return output;
     }
-    //A validation function until an integer is put in
+
+    //A validation function until a double is put in
     public static double validateDouble(Scanner sc, String prompt) {
         //scanner.hasNextInt() checks if the next input is a valid integer
         System.out.println(prompt);
@@ -56,24 +57,22 @@ public abstract class Validator {
             if (sc.hasNextDouble()) {
                 valid = true;
                 output = sc.nextDouble();
+                sc.nextLine();
             } else {
                 System.out.println("Invalid input. Try again: ");
+
                 if (sc.hasNext()) {
-                    sc.next(); //Skip over the given input
+                    sc.nextLine(); //Skip over the given input
                 } else {
                     return -1.0;
                 }
             }
         }
-        //By pressing enter on the final input that is valid, it doesn't consume the new line created
-        if (sc.hasNext()) {
-            sc.nextLine(); //Skip over the given input
-        }
 
         return output;
     }
 
-    //Redundant code here from the validateInt function, but until an integer within a range is put in
+    //Waits until a valid integer in a range is given
     public static int intInRange(Scanner sc, int lowerBound, int upperBound) {
         int output = 0;
         boolean valid = false;
@@ -89,12 +88,8 @@ public abstract class Validator {
                 System.out.println("Invalid input. Try again: ");
             }
             
-            if (sc.hasNext()) {
+            if (sc.hasNextLine()) {
                 sc.nextLine(); //Skip over the given input
-            } else {
-                if (!valid) {
-                    return -1;
-                }
             }
         }
 

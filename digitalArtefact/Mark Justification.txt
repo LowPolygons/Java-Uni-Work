@@ -1,0 +1,18 @@
+0 - 19 : Basic User Input                                        -> Done
+20-39  : Selection                                               -> Done
+40-49  : Loops, Methods, Variables named appropriately           -> Done
+50-59  : Arrays, Testing, Consistent Indentation                 -> Done
+60-74  : Object-Orientation, Extensive Comments                  -> OOP Done, Comments done where necessary to not cluster files
+75-85  : Inheritance, Advanced OO, Appropriate Package Structure -> Done
+86-100 : 1-3 additional features, Self-directed code management -> 1 Main additional feature (workouts), 1 smaller one (Admin Commands),
+
+Github available (https://github.com/LowPolygons/Java-Uni-Work) for Self-Directed Code Management
+
+However: some of the commits are poorly named, and they follow no commit-naming methods.
+(One of them was meant to be a push for a Work project, so if you look through the history and see one referencing
+'Link cells' that was supposed to be for a different one)
+
+Also, this is the github for all my Java work at uni including bootcamp things and so it contains more than jjust
+the digital Artefact (It was never intended to be public but if it counts as SDCM then its easy marks)
+
+Personal Mark: 86-100, maybe 90s, marked down from SDCM

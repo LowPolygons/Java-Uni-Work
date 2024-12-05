@@ -11,5 +11,5 @@ public interface TesterBTS {
     public abstract void runTest(ArrayList<String> inputs);
 
     //Feeds the test results to the Logger
-    public abstract void feedbackTest(Logger logger);
+    public abstract Logger feedbackTest(Logger logger);
 }

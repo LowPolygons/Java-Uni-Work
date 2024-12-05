@@ -6,3 +6,10 @@ Passed
 Passed
 4 out of 4 Passed
 
+
+[T_FileManager test : Three in Total]
+Passed
+Passed
+Passed
+3 out of 3 Passed
+

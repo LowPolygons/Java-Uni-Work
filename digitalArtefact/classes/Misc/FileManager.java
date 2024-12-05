@@ -132,27 +132,7 @@ public abstract class FileManager {
         Profile createdProfile;
 
         //To store the results with keys, so that order doesn't matter when reforming the class
-        HashMap<String, String> profileValues = keyAndVals(openMe); //new HashMap<>();
-
-        // try {
-        //     Scanner fileReader = new Scanner(openMe);
-
-        //     while (fileReader.hasNextLine()) {
-        //         String line = fileReader.nextLine();
-        //         //System.out.println(line); Works
-        //         String type = line.substring(0, line.indexOf("=>")-1); //WORK FROM HERE NEXT SESSION
-        //         String value = line.substring(line.indexOf("=>")+3, line.length()-1);
-
-        //         //Now the types and values are known and formatted correctly, add to the hash map
-        //         profileValues.put(type, value);
-        //     }
-
-        //     fileReader.close();
-
-        // } catch (FileNotFoundException error) {
-        //     System.out.println("File not found.");
-        // }
-        
+        HashMap<String, String> profileValues = keyAndVals(openMe); //new HashMap<>();l
 
         //new Profile(first, sur, age, comp, years, months);
 

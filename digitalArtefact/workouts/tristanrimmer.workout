@@ -1,8 +1,0 @@
-workoutStyle => Powerlifting;
-maxSquat => 120.0;
-maxBench => 100.0;
-maxDeadlift => 100.0;
-maxCAJ => 0.0;
-numDays => 6;
-numRestDays => 1;
-workoutLength => 60;
