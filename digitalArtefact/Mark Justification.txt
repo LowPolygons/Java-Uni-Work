@@ -9,10 +9,10 @@
 Github available (https://github.com/LowPolygons/Java-Uni-Work) for Self-Directed Code Management
 
 However: some of the commits are poorly named, and they follow no commit-naming methods.
-(One of them was meant to be a push for a Work project, so if you look through the history and see one referencing
-'Link cells' that was supposed to be for a different one)
+(One of them was meant to be a push for a Work project but I had this git selected insteads, so if you look through the history and see one referencing
+'Link cells' that was supposed to be for a different repo)
 
-Also, this is the github for all my Java work at uni including bootcamp things and so it contains more than jjust
+Also, this is the github for all my Java work at uni including bootcamp things and so it contains more than just
 the digital Artefact (It was never intended to be public but if it counts as SDCM then its easy marks)
 
-Personal Mark: 86-100, maybe 90s, marked down from SDCM
+Personal Mark: 86-100, maybe 90s

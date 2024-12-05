@@ -111,12 +111,6 @@ public class digitalArtefact {
     
     //The main program flow
     public static void main (String[] args) {
-        //Run tester first by simply instanciating the main tester
-        if(doTests) {
-            System.out.println("\n\n\nTesting is about to begin. You will need to do some inputting, but it counts to nothing towards the program itself.\n\n\n");
-            Tester testClass = new Tester();
-        }
-
         header();
 
         Scanner sc = new Scanner(System.in);
@@ -163,23 +157,12 @@ public class digitalArtefact {
         }
 
 
-        // THE TESTER FOR SAVING WORKOUTS  
-        
-        //Then run tests:
-        
-        // Saving Workouts
-        // System.out.println("\n\nRunning Workout Saving Tests...");
+        //Run tester first by simply instanciating the main tester
+        if(doTests) {
+            System.out.println("\n\n\nTesting is about to begin. You will need to do some inputting, but it counts to nothing towards the program itself.\n\n\n");
+            Tester testClass = new Tester();
+        }
 
-        // boolean pl = tester.PowerliftingSaver();
-        // boolean bb = tester.BodybuildingSaver();
-
-        // System.out.println(pl + "," + bb);
-        
-        // if(pl && bb) {
-        //     System.out.println("Workout Saving tests successful");
-        // } else {
-        //     System.out.println("Workout Saving tests unsuccessful");
-        // }
     }
 
 }
